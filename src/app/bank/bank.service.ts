@@ -22,13 +22,9 @@ export class BankService implements Resolve<any> {
   constructor(private http: HttpClient) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.routeParam = route.params
-    // throw new Error("Method not implemented.");
-    // console.log(route.params);
     if (this.routeParam.id) {
-      // console.log('id');
       this.getBankDataById(this.routeParam.id);
     } else {
-      // console.log('list');
       return this.getBankDataList();
     }
   }
@@ -72,5 +68,6 @@ export class BankService implements Resolve<any> {
       })
     }
   }
+
 
 }

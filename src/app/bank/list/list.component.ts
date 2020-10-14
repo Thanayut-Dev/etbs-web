@@ -19,7 +19,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name','menu'];
 
   ngOnInit() {
     // console.log(this.route.snapshot.data.item.data);
@@ -32,7 +32,7 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  addData() {
-    this.router.navigateByUrl('bank/form/new');
+  deleteData(){
+
   }
 }

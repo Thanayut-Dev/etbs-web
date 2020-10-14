@@ -16,6 +16,12 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
+  <div class="add-button-end">
+    <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="addData()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
   <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"
     [pageSizeOptions]="[25, 50, 100, 250]">
   </mat-paginator>

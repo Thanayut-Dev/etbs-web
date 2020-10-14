@@ -21,8 +21,8 @@ export class ListComponent implements AfterViewInit, OnInit {
   displayedColumns = ['id', 'name'];
 
   ngOnInit() {
-    console.log(this.route.snapshot.data.item.data);
-    this.dataSource = new ListDataSource();
+    // console.log(this.route.snapshot.data.item.data);
+    this.dataSource = new ListDataSource(this.route.snapshot.data.item.data);
   }
 
   ngAfterViewInit() {

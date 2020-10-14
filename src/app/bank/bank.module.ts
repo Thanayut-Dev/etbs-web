@@ -5,11 +5,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { Routes, RouterModule } from '@angular/router';
+import { BankService } from './bank.service';
 
 const routes: Routes = [
   {
     path: '**',
-    component: ListComponent
+    component: ListComponent,
+    resolve: { item: BankService }
   }
 ];
 

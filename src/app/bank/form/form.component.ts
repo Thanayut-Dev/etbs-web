@@ -10,19 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 export class FormComponent implements OnInit {
 
   bankForm: FormGroup;
-
+  separatetype: any[] = [
+    { name: 'Fix Length', value: 'false' },
+    { name: 'SeparateChar', value: 'turn' },
+  ]
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    console.log(this.route.snapshot.data);
-    this.bankForm = this.createForm()
+    let data = this.route.snapshot.data.item;
+    this.bankForm = this.createForm(data)
   }
-  createForm(): FormGroup {
+  createForm(data): FormGroup {
     return this.formBuilder.group({
-      _id: 1,
-      name: 'dddd',
-      // image: '',
-      // separatetype: false,
-      // separatechar: '',
+      _id: data._id,
+      name: data.name,
+      image: data.image,
+      separatetype: data.separatetype,
+      separatechar: data.separatechar,
+
     })
   }
 

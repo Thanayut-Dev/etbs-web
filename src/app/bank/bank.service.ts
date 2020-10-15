@@ -23,51 +23,55 @@ export class BankService implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.routeParam = route.params
     if (this.routeParam.id) {
-      this.getBankDataById(this.routeParam.id);
+      if(this.routeParam.id !== 'new'){
+        // console.log('id');
+        return this.getDataById(this.routeParam.id);
+      }
+      return this.initiaiData();
     } else {
-      return this.getBankDataList();
+      // console.log('list');
+      return this.getDataList();
     }
   }
 
-  getBankDataList() {
+  getDataList() {
     return this.http.get(api_url, { headers: this.authorizationHeader() })
   }
 
-  getBankDataById(id): Promise<any> {
-    if (id === 'new') {
-      return new Promise((resolve, reject) => {
-        let data = {
-          name: "",
-          image: "",
-          separatetype: false,
-          separatechar: "",
-          rows: [
+  initiaiData() {
+    let body;
+    return body = {
+      _id:"",
+      name: "",
+      image: "",
+      separatetype: false,
+      separatechar: "",
+      rows: [
+        {
+          fields: [
             {
-              fields: [
-                {
-                  fieldname: "",
-                  fieldtype: "string",
-                  fieldlength: 0,
-                  defaultvalue: "",
-                  example: ""
-                }
-              ]
+              fieldname: "",
+              fieldtype: "string",
+              fieldlength: 0,
+              defaultvalue: "",
+              example: ""
             }
-          ],
-          encryptcmd: "",
-          uploadcmd: "",
-          maxamount: ""
+          ]
         }
-        resolve(data);
-      })
-    } else {
-      return new Promise((resolve, reject) => {
-        this.http.get(api_url, { headers: this.authorizationHeader() }).subscribe((res: any) => {
-          resolve(res);
-        })
-      })
+      ],
+      encryptcmd: "",
+      uploadcmd: "",
+      maxamount: ""
+
     }
   }
 
+  getDataById(id) {
+    return new Promise((resolve, reject) => {
+      this.http.get(api_url + id, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      })
+    })
+  }
 
 }

@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   {
@@ -45,7 +47,9 @@ const routes: Routes = [
     ReactiveFormsModule,
 
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    FlexLayoutModule,
+    MatTabsModule
   ]
 })
 export class BankModule { }

@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header fxLayoutAlign="space-around stretch">
     <h3 fxFlex>Format File</h3>
-    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+    <button mat-fab color="warn" [disabled]="bankForm && bankForm.invalid" (click)="onSaveData()">
       <mat-icon>save</mat-icon>
     </button>
   </mat-card-header>
@@ -9,7 +9,7 @@
     <div mat-card-avatar class="avatar-card" style="background-image: url('{{bankForm.value.image}}');">
     </div>
     <div fxLayout="column" fxFlex="70">
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input matInput placeholder="name" formControlName="name">
       </mat-form-field>
       <mat-radio-group formControlName="separatetype">
@@ -17,7 +17,7 @@
         <mat-radio-button fxFlex [value]="false">Separate Char</mat-radio-button>
       </mat-radio-group>
       <ng-template [ngIf]="!bankForm.value.separatetype">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="mat-form-top">
           <input matInput placeholder="Separate Char" formControlName="separatechar">
         </mat-form-field>
       </ng-template>
@@ -28,55 +28,88 @@
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
           <div fxLayout="column wrap">
-            <div fxLayout="column" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
+            <div fxLayout="column" fxLayoutAlign="center stretch" formArrayName="rows"
+              *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
               <div fxLayout="row" fxFlex>
-                <div [formGroupName]="idx" fxFlex>
-                  Rows : {{idx + 1}}
-                  <table>
-                    <tr>
-                      <th>Fieldname</th>
-                      <th>Fieldtype</th>
-                      <th>Fieldlength</th>
-                      <th>Default value</th>
-                      <th>Example data</th>
-                    </tr>
-                    <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
-                      <td [formGroupName]="idy">
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                <div [formGroupName]="idx" class="title-header-top" fxFlex>
+                  <div fxLayout="column wrap">
+                    <div fxLayout="row wrap" fxFlex>
+                      <div fxLayout="row wrap" fxLayoutAlign="start">
+                        Rows: {{idx + 1}}
+                      </div>
+                      <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
+                        <mat-form-field appearance="outline" fxFlex="90">
+                          <input matInput placeholder="Fieldname">
                         </mat-form-field>
-                      </td>
-                      <td [formGroupName]="idy">
-                        <mat-form-field appearance="outline">
-                          <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
-                            <mat-option [value]="'string'">string</mat-option>
-                            <mat-option [value]="'number'">number</mat-option>
+                      </div>
+                      <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
+                        <mat-form-field appearance="outline" fxFlex="90">
+                          <mat-select placeholder="placeholder">
+                            <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
+                            </mat-option>
                           </mat-select>
                         </mat-form-field>
-                      </td>
-                      <td [formGroupName]="idy">
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
-                        </mat-form-field>
-                      </td>
-                      <td [formGroupName]="idy">
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Default value" formControlName="defaultvalue"
-                            name="defaultvalue">
-                        </mat-form-field>
-                      </td>
-                      <td [formGroupName]="idy">
-                        <mat-form-field appearance="outline">
-                          <input matInput placeholder="Example Data" formControlName="example" name="example">
-                        </mat-form-field>
-                      </td>
-                      <td [formGroupName]="idy">
-                        <mat-icon class="icon-delete">clear</mat-icon>
-                      </td>
-                    </tr>
-                  </table>
+                      </div>
+                      <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
+                        <section class="example-section">
+                          <mat-checkbox class="example-margin">Checked</mat-checkbox>
+                        </section>
+                      </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxFlex>
+                      <table class="table-header-top" fxFlex>
+                        <tr>
+                          <th>Fieldname</th>
+                          <th>Fieldtype</th>
+                          <th>Fieldlength</th>
+                          <th>Default value</th>
+                          <th>Example data</th>
+                        </tr>
+                        <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                          <td [formGroupName]="idy">
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                            </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy">
+                            <mat-form-field appearance="outline">
+                              <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
+                                <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy">
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
+                            </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy">
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Default value" formControlName="defaultvalue"
+                                name="defaultvalue">
+                            </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy">
+                            <mat-form-field appearance="outline">
+                              <input matInput placeholder="Example Data" formControlName="example" name="example">
+                            </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy">
+                            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                              (click)="deleteField(row,idy)">
+                              <mat-icon class="icon-delete">clear</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-                <mat-icon class="icon-delete-size">delete</mat-icon>
+                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                  (click)="deleteRow(idx)">
+                  <mat-icon class="icon-delete-size">delete</mat-icon>
+                </button>
               </div>
               <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%;">
                 <button mat-raised-button color="primary" class="add-fields-button" (click)="addNewField(row)">
@@ -84,18 +117,60 @@
                   Add Fields
                 </button>
               </div>
-              <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%; margin-top:5px;">
-                <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
-                  <mat-icon class="icon-add">add</mat-icon>
-                  Add Rows
-                </button>
-              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%; margin-top:5px;">
+              <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
+                <mat-icon class="icon-add">add</mat-icon>
+                Add Rows
+              </button>
             </div>
           </div>
           <!-- {{bankForm.value | json}} -->
         </form>
       </mat-tab>
-      <mat-tab label="Other">Content 2</mat-tab>
+      <mat-tab label="Other">
+        <form [formGroup]="bankForm" novalidate>
+          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-radio-group>
+                <mat-radio-button fxFlex [value]="true" class="radio-center">ไม่เข้ารหัส</mat-radio-button>
+                <mat-radio-button fxFlex [value]="false" class="radio-center">เข้ารหัส</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+              <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                <mat-label>Command</mat-label>
+                <textarea matInput formControlName="encryptcmd" name="encryptcmd"
+                  placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-radio-group>
+                <mat-radio-button fxFlex [value]="true" class="radio-center">อัพโหลดด้วยตัวเอง</mat-radio-button>
+                <mat-radio-button fxFlex [value]="false" class="radio-center">อัพโหลดอัตโนมัติ</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+              <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                <mat-label>Command</mat-label>
+                <textarea matInput formControlName="uploadcmd" name="uploadcmd"
+                  placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-radio-group>
+                <mat-radio-button fxFlex [value]="true" class="radio-center">ไม่จำกัดวงเงิน</mat-radio-button>
+                <mat-radio-button fxFlex [value]="false" class="radio-center">จำกัดวงเงิน</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field class="example-full-width" appearance="outline" fxFlex="20">
+                <mat-label>จำนวนวงเงิน</mat-label>
+                <input matInput formControlName="maxamount" name="maxamount">
+              </mat-form-field>
+              <span class="font-bath">บาท</span>
+            </div>
+          </div>
+        </form>
+      </mat-tab>
     </mat-tab-group>
   </mat-card-content>
 </mat-card>

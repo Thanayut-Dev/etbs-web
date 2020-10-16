@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { ListDataSource, ListItem } from './list-datasource';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
+import { BankService } from '../bank.service';
 
 @Component({
   selector: 'app-list',
@@ -17,9 +18,9 @@ export class ListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<ListItem>;
   dataSource: ListDataSource;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private bankService: BankService) { }
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name','menu'];
+  displayedColumns = ['id', 'name', 'menu'];
 
   ngOnInit() {
     // console.log(this.route.snapshot.data.item.data);
@@ -32,7 +33,11 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  deleteData(){
-
+  deleteData(item) {
+    this.bankService.deleteData(item).then((res) => {
+      this.bankService.getDataList().subscribe((res: any) => {
+        this.table.dataSource = res.data;
+      })
+    })
   }
 }

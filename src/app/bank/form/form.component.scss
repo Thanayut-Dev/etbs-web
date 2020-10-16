@@ -14,14 +14,23 @@
 
 .icon-delete {
   color: red;
+  padding-bottom: 40px;
 }
 
 .icon-delete-size {
-  padding-top: 45px;
+  margin-top: 105px;
   font-size: -webkit-xxx-large;
   color: red;
   width: auto;
   height: auto;
+}
+
+
+.title-header-top {
+  margin-top: 20px;
+}
+.table-header-top {
+  margin-top: 5px;
 }
 
 table {
@@ -44,4 +53,30 @@ td {
 
 .icon-add {
   padding-bottom: 5px;
+}
+
+
+.radio-center {
+  padding-top: 15px;
+  padding-right: 20px;
+}
+
+.font-bath {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.mat-form-top{
+  margin-top: 20px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
 }

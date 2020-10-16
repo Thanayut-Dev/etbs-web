@@ -23,7 +23,7 @@ export class BankService implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.routeParam = route.params
     if (this.routeParam.id) {
-      if(this.routeParam.id !== 'new'){
+      if (this.routeParam.id !== 'new') {
         // console.log('id');
         return this.getDataById(this.routeParam.id);
       }
@@ -41,10 +41,9 @@ export class BankService implements Resolve<any> {
   initiaiData() {
     let body;
     return body = {
-      _id:"",
       name: "",
       image: "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg",
-      separatetype: false,
+      separatetype: true,
       separatechar: "",
       rows: [
         {
@@ -72,6 +71,43 @@ export class BankService implements Resolve<any> {
         resolve(res.data);
       })
     })
+  }
+
+  saveData(body): Promise<any> {
+    console.log(body);
+    if (!body._id) {
+      // console.log("create");
+      return this.createData(body);
+    } else {
+      // console.log("update");
+      return this.updateData(body);
+    }
+  }
+
+
+  createData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(api_url, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      }, reject);
+    })
+  }
+  updateData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(api_url + body._id, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      }, reject);
+    })
+  }
+
+  deleteData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .delete(api_url + body._id, { headers: this.authorizationHeader() })
+        .subscribe((res: any) => {
+          resolve(res.data);
+        }, reject);
+    });
   }
 
 }

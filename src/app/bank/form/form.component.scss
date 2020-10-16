@@ -1,5 +1,47 @@
-.avatar-card{
+.avatar-card {
   background-size: cover;
   width: 8rem;
   height: 8rem;
+}
+
+.add-fields-button {
+  font-size: 12px;
+}
+
+.add-rows-button {
+  width: 15%;
+}
+
+.icon-delete {
+  color: red;
+}
+
+.icon-delete-size {
+  padding-top: 45px;
+  font-size: -webkit-xxx-large;
+  color: red;
+  width: auto;
+  height: auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  // width: 100%;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+th {
+  text-align: center;
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+td {
+  text-align: center;
+}
+
+.icon-add {
+  padding-bottom: 5px;
 }

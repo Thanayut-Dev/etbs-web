@@ -1,7 +1,9 @@
 <mat-card>
   <mat-card-header fxLayoutAlign="space-around stretch">
     <h3 fxFlex>Format File</h3>
-    <button mat-button>save</button>
+    <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+      <mat-icon>save</mat-icon>
+    </button>
   </mat-card-header>
   <form [formGroup]="bankForm" fxLayout="row wrap" fxLayoutAlign="space-around stretch">
     <div mat-card-avatar class="avatar-card" style="background-image: url('{{bankForm.value.image}}');">
@@ -25,47 +27,72 @@
     <mat-tab-group>
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
-          <div fxLayout="row wrap" fxLayoutAlign="center stretch" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
-            <div [formGroupName]="idx" fxLayoutAlign="start stretch">
-              Rows : {{idx + 1}}
-              <table style="margin-top: 20px;">
-                <tr style="text-align: center;">
-                  <th>Fieldname</th>
-                  <th>Fieldtype</th>
-                  <th>Fieldlength</th>
-                  <th>Default value</th>
-                  <th>Example data</th>
-                </tr>
-                <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
-                  <td [formGroupName]="idy">
-                    <mat-form-field appearance="outline">
-                      <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
-                    </mat-form-field>
-                  </td>
-                  <td [formGroupName]="idy">
-                    <mat-form-field appearance="outline">
-                      <input matInput placeholder="Fieldtype" formControlName="fieldtype" name="fieldtype">
-                    </mat-form-field>
-                  </td>
-                  <td [formGroupName]="idy">
-                    <mat-form-field appearance="outline">
-                      <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
-                    </mat-form-field>
-                  </td>
-                  <td [formGroupName]="idy">
-                    <mat-form-field appearance="outline">
-                      <input matInput placeholder="Default value" formControlName="defaultvalue" name="defaultvalue">
-                    </mat-form-field>
-                  </td>
-                  <td [formGroupName]="idy">
-                    <mat-form-field appearance="outline">
-                      <input matInput placeholder="Example Data" formControlName="example" name="example">
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
+          <div fxLayout="column wrap">
+            <div fxLayout="column" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
+              <div fxLayout="row" fxFlex>
+                <div [formGroupName]="idx" fxFlex>
+                  Rows : {{idx + 1}}
+                  <table>
+                    <tr>
+                      <th>Fieldname</th>
+                      <th>Fieldtype</th>
+                      <th>Fieldlength</th>
+                      <th>Default value</th>
+                      <th>Example data</th>
+                    </tr>
+                    <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                      <td [formGroupName]="idy">
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                        </mat-form-field>
+                      </td>
+                      <td [formGroupName]="idy">
+                        <mat-form-field appearance="outline">
+                          <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
+                            <mat-option [value]="'string'">string</mat-option>
+                            <mat-option [value]="'number'">number</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+                      <td [formGroupName]="idy">
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
+                        </mat-form-field>
+                      </td>
+                      <td [formGroupName]="idy">
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Default value" formControlName="defaultvalue"
+                            name="defaultvalue">
+                        </mat-form-field>
+                      </td>
+                      <td [formGroupName]="idy">
+                        <mat-form-field appearance="outline">
+                          <input matInput placeholder="Example Data" formControlName="example" name="example">
+                        </mat-form-field>
+                      </td>
+                      <td [formGroupName]="idy">
+                        <mat-icon class="icon-delete">clear</mat-icon>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <mat-icon class="icon-delete-size">delete</mat-icon>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%;">
+                <button mat-raised-button color="primary" class="add-fields-button" (click)="addNewField(row)">
+                  <mat-icon class="icon-add">add</mat-icon>
+                  Add Fields
+                </button>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%; margin-top:5px;">
+                <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
+                  <mat-icon class="icon-add">add</mat-icon>
+                  Add Rows
+                </button>
+              </div>
             </div>
           </div>
+          <!-- {{bankForm.value | json}} -->
         </form>
       </mat-tab>
       <mat-tab label="Other">Content 2</mat-tab>

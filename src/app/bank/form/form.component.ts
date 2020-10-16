@@ -62,4 +62,13 @@ export class FormComponent implements OnInit {
     return fields;
   }
 
+
+  addNewField(row) {
+
+  }
+
+  addNewRow() {
+
+  }
+
 }

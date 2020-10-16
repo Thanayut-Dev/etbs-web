@@ -43,7 +43,7 @@ export class BankService implements Resolve<any> {
     return body = {
       _id:"",
       name: "",
-      image: "",
+      image: "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg",
       separatetype: false,
       separatechar: "",
       rows: [

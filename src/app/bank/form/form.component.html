@@ -1,17 +1,73 @@
 <mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>avatar</div>
-    <mat-card-title>title</mat-card-title>
-    <mat-card-subtitle>sub-header</mat-card-subtitle>
+  <mat-card-header fxLayoutAlign="space-around stretch">
+    <h3 fxFlex>Format File</h3>
+    <button mat-button>save</button>
   </mat-card-header>
+  <form [formGroup]="bankForm" fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+    <div mat-card-avatar class="avatar-card" style="background-image: url('{{bankForm.value.image}}');">
+    </div>
+    <div fxLayout="column" fxFlex="70">
+      <mat-form-field>
+        <input matInput placeholder="name" formControlName="name">
+      </mat-form-field>
+      <mat-radio-group formControlName="separatetype">
+        <mat-radio-button fxFlex [value]="true">Fix Length</mat-radio-button>
+        <mat-radio-button fxFlex [value]="false">Separate Char</mat-radio-button>
+      </mat-radio-group>
+      <ng-template [ngIf]="!bankForm.value.separatetype">
+        <mat-form-field>
+          <input matInput placeholder="Separate Char" formControlName="separatechar">
+        </mat-form-field>
+      </ng-template>
+    </div>
+  </form>
   <mat-card-content>
     <mat-tab-group>
-      <mat-tab label="Tab 1">Content 1</mat-tab>
-      <mat-tab label="Tab 2">Content 2</mat-tab>
+      <mat-tab label="Format File">
+        <form [formGroup]="bankForm">
+          <div fxLayout="row wrap" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
+            <div [formGroupName]="idx">
+              <table fxFlex style="margin-top: 20px;">
+                <tr style="text-align: center;">
+                  <th>Fieldname</th>
+                  <th>Fieldtype</th>
+                  <th>Fieldlength</th>
+                  <th>Default value</th>
+                  <th>Example data</th>
+                </tr>
+                <tr style="text-align: center;" formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Fieldtype" formControlName="fieldtype" name="fieldtype">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Default value" formControlName="defaultvalue" name="defaultvalue">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Example Data" formControlName="example" name="example">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Other">Content 2</mat-tab>
     </mat-tab-group>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>actionOne</button>
-    <button mat-button>actionTwo</button>
-    </mat-card-actions>
 </mat-card>

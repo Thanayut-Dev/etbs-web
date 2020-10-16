@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BankService } from '../bank.service';
 
 @Component({
   selector: 'app-form',
@@ -10,11 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class FormComponent implements OnInit {
 
   bankForm: FormGroup;
-  separatetype: any[] = [
-    { name: 'Fix Length', value: 'false' },
-    { name: 'SeparateChar', value: 'turn' },
-  ]
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  rows: FormArray;
+  fields: FormArray;
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private bankService: BankService) { }
   ngOnInit(): void {
     let data = this.route.snapshot.data.item;
     this.bankForm = this.createForm(data)
@@ -26,8 +25,41 @@ export class FormComponent implements OnInit {
       image: data.image,
       separatetype: data.separatetype,
       separatechar: data.separatechar,
-
+      rows: this.formBuilder.array(this.createRows(data))
     })
+  }
+  createRows(data): any[] {
+    let rows = [];
+    data.rows.forEach(row => {
+      rows.push(this.formBuilder.group({
+        fields: this.createFields(row)
+      }))
+    })
+    return rows;
+  }
+  createFields(row) {
+    let fields = this.formBuilder.array([]);
+    row.fields.forEach(field => {
+      console.log(field);
+      fields.push(this.formBuilder.group({
+        fieldname: field.fieldname,
+        fieldtype: field.fieldtype,
+        fieldlength: field.fieldlength,
+        defaultvalue: field.defaultvalue,
+        example: field.exampleÎ
+      }))
+    })
+    return fields;
+  }
+
+  getFormRows() {
+    let rows = (this.bankForm.get("rows") as FormArray).controls;
+    return rows;
+  }
+
+  getFormFields(row) {
+    let fields = (row.get("fields") as FormArray).controls;
+    return fields;
   }
 
 }

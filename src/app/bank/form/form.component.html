@@ -25,9 +25,10 @@
     <mat-tab-group>
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
-          <div fxLayout="row wrap" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
-            <div [formGroupName]="idx">
-              <table fxFlex style="margin-top: 20px;">
+          <div fxLayout="row wrap" fxLayoutAlign="center stretch" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
+            <div [formGroupName]="idx" fxLayoutAlign="start stretch">
+              Rows : {{idx + 1}}
+              <table style="margin-top: 20px;">
                 <tr style="text-align: center;">
                   <th>Fieldname</th>
                   <th>Fieldtype</th>
@@ -35,7 +36,7 @@
                   <th>Default value</th>
                   <th>Example data</th>
                 </tr>
-                <tr style="text-align: center;" formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
                   <td [formGroupName]="idy">
                     <mat-form-field appearance="outline">
                       <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">

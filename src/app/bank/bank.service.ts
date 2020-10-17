@@ -59,6 +59,9 @@ export class BankService implements Resolve<any> {
           ]
         }
       ],
+      encrypt: false,
+      upload: false,
+      limitamount: false,
       encryptcmd: "",
       uploadcmd: "",
       maxamount: ""

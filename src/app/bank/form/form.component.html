@@ -28,21 +28,23 @@
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
           <div fxLayout="column wrap" fxFlex>
-            <div fxLayout="column" fxLayoutAlign="center stretch" formArrayName="rows"
-              *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
-              <div fxLayout="row" fxFlex>
-                <div [formGroupName]="idx" class="title-header-top" fxFlex>
-                  <div fxLayout="column wrap">
-                    <div fxLayout="row wrap" fxFlex>
+
+            <mat-accordion formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header class="expansion-panel-header" [formGroupName]="idx">
+                  <div fxLayout="row wrap" fxFlex>
+                    <mat-panel-title>
                       <div fxLayout="row wrap" fxLayoutAlign="start" class="title-row-top">
                         Rows: {{idx + 1}}
                       </div>
-                      <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
                           <input matInput placeholder="Rowname" formControlName="rowname" name="rowname">
                         </mat-form-field>
                       </div>
-                      <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
+                      <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
                           <mat-select placeholder="Rowtype" formControlName="rowtype" name="rowtype">
                             <mat-option *ngFor="let item of rowtype" [value]="item.value">{{item.name}}
@@ -58,121 +60,134 @@
                           </mat-checkbox>
                         </section>
                       </div>
+                    </mat-panel-description>
+                  </div>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutAlign="center stretch" fxFlex>
+                  <div fxLayout="row" fxFlex>
+                    <div [formGroupName]="idx" class="title-header-top" fxFlex>
+                      <div fxLayout="column wrap">
+                        <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxFlex>
+                          <table class="table-header-top" fxFlex>
+                            <tr>
+                              <th>Fieldname</th>
+                              <th>Fieldtype</th>
+                              <th>Fieldlength</th>
+                              <th>Example data</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                            <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                              <td [formGroupName]="idy">
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                                </mat-form-field>
+                              </td>
+                              <td [formGroupName]="idy">
+                                <mat-form-field appearance="outline">
+                                  <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
+                                    <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </td>
+                              <td [formGroupName]="idy">
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
+                                </mat-form-field>
+                              </td>
+                              <td [formGroupName]="idy">
+                                <mat-form-field appearance="outline">
+                                  <input matInput placeholder="Example Data" formControlName="example" name="example">
+                                </mat-form-field>
+                              </td>
+                              <td [formGroupName]="idy" class="checkbox-content">
+                                <section>
+                                  <mat-checkbox formControlName="required" name="required" [value]="true">
+                                    Required
+                                  </mat-checkbox>
+                                </section>
+                              </td>
+                              <td [formGroupName]="idy">
+                                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                                  (click)="deleteField(row,idy)">
+                                  <mat-icon class="icon-delete">clear</mat-icon>
+                                </button>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                    <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxFlex>
-                      <table class="table-header-top" fxFlex>
-                        <tr>
-                          <th>Fieldname</th>
-                          <th>Fieldtype</th>
-                          <th>Fieldlength</th>
-                          <th>Example data</th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                        <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
-                          <td [formGroupName]="idy">
-                            <mat-form-field appearance="outline">
-                              <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
-                            </mat-form-field>
-                          </td>
-                          <td [formGroupName]="idy">
-                            <mat-form-field appearance="outline">
-                              <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
-                                <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
-                                </mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                          </td>
-                          <td [formGroupName]="idy">
-                            <mat-form-field appearance="outline">
-                              <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
-                            </mat-form-field>
-                          </td>
-                          <td [formGroupName]="idy">
-                            <mat-form-field appearance="outline">
-                              <input matInput placeholder="Example Data" formControlName="example" name="example">
-                            </mat-form-field>
-                          </td>
-                          <td [formGroupName]="idy" class="checkbox-content">
-                            <section>
-                              <mat-checkbox formControlName="required" name="required"
-                                [value]="true">
-                                Required
-                              </mat-checkbox>
-                            </section>
-                          </td>
-                          <td [formGroupName]="idy">
-                            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
-                              (click)="deleteField(row,idy)">
-                              <mat-icon class="icon-delete">clear</mat-icon>
-                            </button>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                      (click)="deleteRow(idx)">
+                      <mat-icon class="icon-delete-size">delete</mat-icon>
+                    </button>
+                  </div>
+                  <div fxLayout="row wrap" fxLayoutAlign="end" class="field-button-div">
+                    <button mat-raised-button color="primary" class="add-fields-button" (click)="addNewField(row)">
+                      <mat-icon class="icon-add">add</mat-icon>
+                      Add Fields
+                    </button>
                   </div>
                 </div>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
-                  (click)="deleteRow(idx)">
-                  <mat-icon class="icon-delete-size">delete</mat-icon>
-                </button>
-              </div>
-              <div fxLayout="row wrap" fxLayoutAlign="end" class="field-button-div">
-                <button mat-raised-button color="primary" class="add-fields-button" (click)="addNewField(row)">
-                  <mat-icon class="icon-add">add</mat-icon>
-                  Add Fields
-                </button>
-              </div>
-            </div>
+              </mat-expansion-panel>
+            </mat-accordion>
             <div fxLayout="row wrap" fxLayoutAlign="end" class="row-button-div">
               <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
                 <mat-icon class="icon-add">add</mat-icon>
                 Add Rows
               </button>
             </div>
-            <!-- {{bankForm.value | json}} -->
           </div>
+          <!-- {{bankForm.value | json}} -->
         </form>
       </mat-tab>
       <mat-tab label="Other">
         <form [formGroup]="bankForm" novalidate>
-          <div fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100">
+          <div fxLayout="column" fxFlex="100" class="start-redio">
             <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
-              <mat-radio-group>
-                <mat-radio-button fxFlex [value]="true" class="radio-center">ไม่เข้ารหัส</mat-radio-button>
-                <mat-radio-button fxFlex [value]="false" class="radio-center">เข้ารหัส</mat-radio-button>
+              <mat-radio-group formControlName="encrypt" class="radio-center">
+                <mat-radio-button fxFlex [value]="false" class="encrypt-right">ไม่เข้ารหัส</mat-radio-button>
+                <mat-radio-button fxFlex [value]="true">เข้ารหัส</mat-radio-button>
               </mat-radio-group>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
-              <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
-                <mat-label>Command</mat-label>
-                <textarea matInput formControlName="encryptcmd" name="encryptcmd"
-                  placeholder="Ex. It makes me feel..."></textarea>
-              </mat-form-field>
-            </div>
+            <ng-template [ngIf]="bankForm.value.encrypt === true">
+              <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                  <mat-label>Command</mat-label>
+                  <textarea matInput formControlName="encryptcmd" name="encryptcmd"
+                    placeholder="Ex. It makes me feel..."></textarea>
+                </mat-form-field>
+              </div>
+            </ng-template>
             <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
-              <mat-radio-group>
-                <mat-radio-button fxFlex [value]="true" class="radio-center">อัพโหลดด้วยตัวเอง</mat-radio-button>
-                <mat-radio-button fxFlex [value]="false" class="radio-center">อัพโหลดอัตโนมัติ</mat-radio-button>
+              <mat-radio-group formControlName="upload" class="radio-center">
+                <mat-radio-button fxFlex [value]="false" class="upload-right">อัพโหลดอัตโนมัติ</mat-radio-button>
+                <mat-radio-button fxFlex [value]="true">อัพโหลดด้วยตัวเอง</mat-radio-button>
               </mat-radio-group>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
-              <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
-                <mat-label>Command</mat-label>
-                <textarea matInput formControlName="uploadcmd" name="uploadcmd"
-                  placeholder="Ex. It makes me feel..."></textarea>
-              </mat-form-field>
-            </div>
+            <ng-template [ngIf]="bankForm.value.upload === true">
+              <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                  <mat-label>Command</mat-label>
+                  <textarea matInput formControlName="uploadcmd" name="uploadcmd"
+                    placeholder="Ex. It makes me feel..."></textarea>
+                </mat-form-field>
+              </div>
+            </ng-template>
             <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
-              <mat-radio-group>
-                <mat-radio-button fxFlex [value]="true" class="radio-center">ไม่จำกัดวงเงิน</mat-radio-button>
-                <mat-radio-button fxFlex [value]="false" class="radio-center">จำกัดวงเงิน</mat-radio-button>
+              <mat-radio-group formControlName="limitamount" class="radio-center">
+                <mat-radio-button fxFlex [value]="false" class="limitamount-right">ไม่จำกัดวงเงิน</mat-radio-button>
+                <mat-radio-button fxFlex [value]="true">จำกัดวงเงิน</mat-radio-button>
               </mat-radio-group>
-              <mat-form-field class="example-full-width" appearance="outline" fxFlex="20">
-                <mat-label>จำนวนวงเงิน</mat-label>
-                <input matInput formControlName="maxamount" name="maxamount">
-              </mat-form-field>
-              <span class="font-bath">บาท</span>
+              <ng-template [ngIf]="bankForm.value.limitamount === true">
+                <mat-form-field class="example-full-width" appearance="outline" fxFlex="20">
+                  <mat-label>จำนวนวงเงิน</mat-label>
+                  <input matInput formControlName="maxamount" name="maxamount">
+                </mat-form-field>
+                <span class="font-bath">บาท</span>
+              </ng-template>
             </div>
           </div>
         </form>

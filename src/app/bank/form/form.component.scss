@@ -18,7 +18,7 @@
 }
 
 .icon-delete-size {
-  margin-top: 105px;
+  margin-top: 30px;
   font-size: -webkit-xxx-large;
   color: red;
   width: auto;
@@ -83,7 +83,7 @@ td {
   display: flex;
   align-content: center;
   align-items: center;
-  height: 60px;
+  height: 65px;
 }
 
 .example-margin {
@@ -95,25 +95,37 @@ td {
   max-height: 650px;
 }
 
-// .table-content {
-//   border: solid grey;
-//   border-radius: 5px;
-//   min-height: 100;
-//   margin: 20px;
-//   padding: 20px;
-// }
-
 .row-button-div {
-  margin-right: 7%;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .field-button-div {
-  margin-right: 7%;
+  margin-right: 5.5%;
 }
 
 .checkbox-content {
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 15px;
+}
+
+.expansion-panel-header {
+  height: auto;
+  padding-top: 20px;
+}
+
+.encrypt-right {
+  padding-right: 100px;
+}
+
+.upload-right {
+  padding-right: 57px;
+}
+
+.limitamount-right {
+  padding-right: 78px;
+}
+
+.start-redio {
+  padding-left: 20px;
 }

@@ -14,6 +14,7 @@ export class FormComponent implements OnInit {
   bankForm: FormGroup;
   rows: FormArray;
   fields: FormArray;
+  panelOpenState = false;
 
   fieldtype: any[] = [
     { name: 'string', value: 'string' },
@@ -43,6 +44,9 @@ export class FormComponent implements OnInit {
       separatetype: data.separatetype,
       separatechar: data.separatechar,
       rows: this.formBuilder.array(this.createRows(data)),
+      encrypt: data.encrypt,
+      upload: data.upload,
+      limitamount: data.limitamount,
       encryptcmd: data.encryptcmd,
       uploadcmd: data.uploadcmd,
       maxamount: data.maxamount

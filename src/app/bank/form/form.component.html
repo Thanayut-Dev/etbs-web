@@ -65,8 +65,8 @@
                           <th>Fieldname</th>
                           <th>Fieldtype</th>
                           <th>Fieldlength</th>
-                          <th>Default value</th>
                           <th>Example data</th>
+                          <th></th>
                           <th></th>
                         </tr>
                         <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
@@ -90,14 +90,16 @@
                           </td>
                           <td [formGroupName]="idy">
                             <mat-form-field appearance="outline">
-                              <input matInput placeholder="Default value" formControlName="defaultvalue"
-                                name="defaultvalue">
-                            </mat-form-field>
-                          </td>
-                          <td [formGroupName]="idy">
-                            <mat-form-field appearance="outline">
                               <input matInput placeholder="Example Data" formControlName="example" name="example">
                             </mat-form-field>
+                          </td>
+                          <td [formGroupName]="idy" class="checkbox-content">
+                            <section>
+                              <mat-checkbox formControlName="required" name="required"
+                                [value]="true">
+                                Required
+                              </mat-checkbox>
+                            </section>
                           </td>
                           <td [formGroupName]="idy">
                             <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"

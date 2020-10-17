@@ -53,7 +53,7 @@ export class BankService implements Resolve<any> {
               fieldname: "",
               fieldtype: "string",
               fieldlength: 0,
-              defaultvalue: "",
+              required: false,
               example: ""
             }
           ]

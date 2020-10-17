@@ -67,7 +67,7 @@ export class FormComponent implements OnInit {
         fieldname: field.fieldname,
         fieldtype: field.fieldtype,
         fieldlength: field.fieldlength,
-        defaultvalue: field.defaultvalue,
+        required: field.required,
         example: field.example
       }))
     })
@@ -97,7 +97,7 @@ export class FormComponent implements OnInit {
             fieldname: "",
             fieldtype: "string",
             fieldlength: 0,
-            defaultvalue: "",
+            required: false,
             example: ""
           })
         ])
@@ -111,7 +111,7 @@ export class FormComponent implements OnInit {
         fieldname: "",
         fieldtype: "string",
         fieldlength: 0,
-        defaultvalue: "",
+        required: false,
         example: ""
       })
     )

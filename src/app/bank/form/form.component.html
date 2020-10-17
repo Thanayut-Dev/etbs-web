@@ -34,25 +34,28 @@
                 <div [formGroupName]="idx" class="title-header-top" fxFlex>
                   <div fxLayout="column wrap">
                     <div fxLayout="row wrap" fxFlex>
-                      <div fxLayout="row wrap" fxLayoutAlign="start">
+                      <div fxLayout="row wrap" fxLayoutAlign="start" class="title-row-top">
                         Rows: {{idx + 1}}
                       </div>
                       <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
-                          <input matInput placeholder="Fieldname">
+                          <input matInput placeholder="Rowname" formControlName="rowname" name="rowname">
                         </mat-form-field>
                       </div>
                       <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
-                          <mat-select placeholder="placeholder">
-                            <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
+                          <mat-select placeholder="Rowtype" formControlName="rowtype" name="rowtype">
+                            <mat-option *ngFor="let item of rowtype" [value]="item.value">{{item.name}}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                       <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
                         <section class="example-section">
-                          <mat-checkbox class="example-margin">Checked</mat-checkbox>
+                          <mat-checkbox class="example-margin" formControlName="required" name="required"
+                            [value]="true">
+                            Required
+                          </mat-checkbox>
                         </section>
                       </div>
                     </div>
@@ -125,7 +128,7 @@
               </button>
             </div>
           </div>
-          <!-- {{bankForm.value | json}} -->
+          {{bankForm.value | json}}
         </form>
       </mat-tab>
       <mat-tab label="Other">

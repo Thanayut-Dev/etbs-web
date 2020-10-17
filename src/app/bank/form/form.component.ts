@@ -22,6 +22,14 @@ export class FormComponent implements OnInit {
     { name: 'text', value: 'text' },
     { name: 'date', value: 'date' }
   ];
+
+  rowtype: any[] = [
+    { name: 'Header', value: 'header' },
+    { name: 'Product', value: 'product' },
+    { name: 'Transection', value: 'transection' },
+    { name: 'Footer', value: 'footer' }
+  ];
+
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private bankService: BankService, private location: Location,) { }
   ngOnInit(): void {
     let data = this.route.snapshot.data.item;
@@ -44,6 +52,9 @@ export class FormComponent implements OnInit {
     let rows = [];
     data.rows.forEach(row => {
       rows.push(this.formBuilder.group({
+        rowname: row.rowname,
+        rowtype: row.rowtype,
+        required: row.required,
         fields: this.createFields(row)
       }))
     })
@@ -79,6 +90,9 @@ export class FormComponent implements OnInit {
     this.rows = this.bankForm.get("rows") as FormArray;
     this.rows.push(
       this.formBuilder.group({
+        rowname: "",
+        rowtype: "",
+        required: false,
         fields: this.formBuilder.array([
           this.formBuilder.group({
             fieldname: "",

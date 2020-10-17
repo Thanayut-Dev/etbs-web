@@ -47,6 +47,9 @@ export class BankService implements Resolve<any> {
       separatechar: "",
       rows: [
         {
+          rowname: "",
+          rowtype: "",
+          required: false,
           fields: [
             {
               fieldname: "",

@@ -24,10 +24,10 @@
     </div>
   </form>
   <mat-card-content>
-    <mat-tab-group>
+    <mat-tab-group class="scroll-bar">
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
-          <div fxLayout="column wrap">
+          <div fxLayout="column wrap" fxFlex>
             <div fxLayout="column" fxLayoutAlign="center stretch" formArrayName="rows"
               *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
               <div fxLayout="row" fxFlex>
@@ -67,6 +67,7 @@
                           <th>Fieldlength</th>
                           <th>Default value</th>
                           <th>Example data</th>
+                          <th></th>
                         </tr>
                         <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
                           <td [formGroupName]="idy">
@@ -114,21 +115,21 @@
                   <mat-icon class="icon-delete-size">delete</mat-icon>
                 </button>
               </div>
-              <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%;">
+              <div fxLayout="row wrap" fxLayoutAlign="end" class="field-button-div">
                 <button mat-raised-button color="primary" class="add-fields-button" (click)="addNewField(row)">
                   <mat-icon class="icon-add">add</mat-icon>
                   Add Fields
                 </button>
               </div>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="end" style="margin-right: 7%; margin-top:5px;">
+            <div fxLayout="row wrap" fxLayoutAlign="end" class="row-button-div">
               <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
                 <mat-icon class="icon-add">add</mat-icon>
                 Add Rows
               </button>
             </div>
+            <!-- {{bankForm.value | json}} -->
           </div>
-          {{bankForm.value | json}}
         </form>
       </mat-tab>
       <mat-tab label="Other">

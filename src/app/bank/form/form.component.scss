@@ -33,16 +33,21 @@
 .table-header-top {
   margin-top: 5px;
 }
-.title-row-top{
+
+.title-row-top {
   padding-top: 20px;
 }
 
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  // width: 100%;
   flex-direction: row;
   box-sizing: border-box;
+
+  border: solid #dddddd 2px;
+  min-height: 100;
+  margin: 20px;
+  padding: 20px;
 }
 
 th {
@@ -70,7 +75,7 @@ td {
   padding-left: 10px;
 }
 
-.mat-form-top{
+.mat-form-top {
   margin-top: 20px;
 }
 
@@ -83,4 +88,26 @@ td {
 
 .example-margin {
   margin: 0 10px;
+}
+
+.scroll-bar {
+  overflow: auto;
+  max-height: 650px;
+}
+
+// .table-content {
+//   border: solid grey;
+//   border-radius: 5px;
+//   min-height: 100;
+//   margin: 20px;
+//   padding: 20px;
+// }
+
+.row-button-div {
+  margin-right: 7%;
+  margin-top: 5px;
+}
+
+.field-button-div {
+  margin-right: 7%;
 }

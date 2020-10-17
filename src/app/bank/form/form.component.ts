@@ -63,7 +63,6 @@ export class FormComponent implements OnInit {
   createFields(row) {
     let fields = this.formBuilder.array([]);
     row.fields.forEach(field => {
-      // console.log(field);
       fields.push(this.formBuilder.group({
         fieldname: field.fieldname,
         fieldtype: field.fieldtype,
@@ -128,7 +127,6 @@ export class FormComponent implements OnInit {
 
 
   async onSaveData() {
-    // console.log(this.bankForm.value);
     this.bankService.saveData(this.bankForm.value).then(res => {
       this.location.back();
     }).catch(err => {

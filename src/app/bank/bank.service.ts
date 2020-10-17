@@ -24,12 +24,10 @@ export class BankService implements Resolve<any> {
     this.routeParam = route.params
     if (this.routeParam.id) {
       if (this.routeParam.id !== 'new') {
-        // console.log('id');
         return this.getDataById(this.routeParam.id);
       }
       return this.initiaiData();
     } else {
-      // console.log('list');
       return this.getDataList();
     }
   }
@@ -79,10 +77,8 @@ export class BankService implements Resolve<any> {
   saveData(body): Promise<any> {
     console.log(body);
     if (!body._id) {
-      // console.log("create");
       return this.createData(body);
     } else {
-      // console.log("update");
       return this.updateData(body);
     }
   }

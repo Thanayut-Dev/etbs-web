@@ -13,8 +13,8 @@
         <input matInput placeholder="name" formControlName="name">
       </mat-form-field>
       <mat-radio-group formControlName="separatetype">
-        <mat-radio-button fxFlex [value]="true">Fix Length</mat-radio-button>
-        <mat-radio-button fxFlex [value]="false">Separate Char</mat-radio-button>
+        <mat-radio-button fxFlex [value]="false">Fix Length</mat-radio-button>
+        <mat-radio-button fxFlex [value]="true">Separate Char</mat-radio-button>
       </mat-radio-group>
       <ng-template [ngIf]="!bankForm.value.separatetype">
         <mat-form-field appearance="outline" class="mat-form-top">
@@ -79,7 +79,7 @@
                             </tr>
                             <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
                               <td [formGroupName]="idy">
-                               {{idy + 1}}
+                                {{idy + 1}}
                               </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">

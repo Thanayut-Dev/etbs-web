@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./bank/bank.module').then(m => m.BankModule)
   },
   {
+    path: 'source',
+    loadChildren: () => import('./source/source.module').then(m => m.SourceModule)
+  },
+  {
     path: '**',
     redirectTo: 'bank'
   }

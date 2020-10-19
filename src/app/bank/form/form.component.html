@@ -28,7 +28,6 @@
       <mat-tab label="Format File">
         <form [formGroup]="bankForm">
           <div fxLayout="column wrap" fxFlex>
-
             <mat-accordion formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;" fxFlex>
               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="expansion-panel-header" [formGroupName]="idx">

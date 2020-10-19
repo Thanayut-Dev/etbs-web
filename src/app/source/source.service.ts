@@ -22,6 +22,6 @@ export class SourceService implements Resolve<any> {
   constructor(private http: HttpClient) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    throw new Error('Method not implemented.');
+    console.log(route);
   }
 }

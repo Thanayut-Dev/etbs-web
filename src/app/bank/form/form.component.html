@@ -69,6 +69,7 @@
                         <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxFlex>
                           <table class="table-header-top" fxFlex>
                             <tr>
+                              <th>No.</th>
                               <th>Fieldname</th>
                               <th>Fieldtype</th>
                               <th>Fieldlength</th>
@@ -77,6 +78,9 @@
                               <th></th>
                             </tr>
                             <tr formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
+                              <td [formGroupName]="idy">
+                               {{idy + 1}}
+                              </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">
                                   <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">

@@ -129,13 +129,24 @@ export class FormComponent implements OnInit {
     fields.removeAt(idy);
   }
 
-
   async onSaveData() {
     this.bankService.saveData(this.bankForm.value).then(res => {
       this.location.back();
     }).catch(err => {
 
     });
+  }
+
+  exampleFile(){
+    this.bankService.exampleFile(this.bankForm.value).then((res:any) => {
+      this.downLoadFile(res, "text/csv");
+    })
+  }
+
+  downLoadFile(data: any, type: string) {
+    const blob = new Blob([data], { type: type });
+    const url = window.URL.createObjectURL(blob);
+    const pwa = window.open(url);
   }
 
 }

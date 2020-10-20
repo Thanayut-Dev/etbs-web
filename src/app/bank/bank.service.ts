@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 
 
 const api_url = environment.apiUrl + "/api/banks/";
+const api_urlExample = environment.apiUrl + '/api/banks/example/txtfile/';
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +111,14 @@ export class BankService implements Resolve<any> {
           resolve(res.data);
         }, reject);
     });
+  }
+
+  exampleFile(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(api_urlExample, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      })
+    })
   }
 
 }

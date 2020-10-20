@@ -136,12 +136,22 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
-            <div fxLayout="row wrap" fxLayoutAlign="end" class="row-button-div">
+            <div fxLayout="row wrap" fxLayoutAlign="space-between stretch" class="row-button-div">
+              <button mat-raised-button color="primary" class="add-rows-button" (click)="exampleFile()">
+                <mat-icon class="icon-add">description</mat-icon>
+                Example
+              </button>
               <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
                 <mat-icon class="icon-add">add</mat-icon>
                 Add Rows
               </button>
             </div>
+            <!-- <div fxLayout="row wrap" fxLayoutAlign="end" class="row-button-div">
+              <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
+                <mat-icon class="icon-add">add</mat-icon>
+                Add Rows
+              </button>
+            </div> -->
           </div>
           <!-- {{bankForm.value | json}} -->
         </form>

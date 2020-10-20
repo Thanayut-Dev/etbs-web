@@ -137,16 +137,22 @@ export class FormComponent implements OnInit {
     });
   }
 
-  exampleFile(){
-    this.bankService.exampleFile(this.bankForm.value).then((res:any) => {
-      this.downLoadFile(res, "text/csv");
+  exampleFile() {
+    this.bankService.exampleFile(this.bankForm.value).then((res: any) => {
+      this.downLoadFile(res);
     })
   }
 
-  downLoadFile(data: any, type: string) {
-    const blob = new Blob([data], { type: type });
-    const url = window.URL.createObjectURL(blob);
-    const pwa = window.open(url);
-  }
+  downLoadFile(data: any) {
+    console.log(data);
+    var url = 'data:text/csv;charset=utf-8,' + data;
 
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "formatbank.txt";
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
 }

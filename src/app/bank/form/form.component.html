@@ -6,8 +6,10 @@
     </button>
   </mat-card-header>
   <form [formGroup]="bankForm" fxLayout="row wrap" fxLayoutAlign="space-around stretch">
-    <div mat-card-avatar class="avatar-card" style="background-image: url('{{bankForm.value.image}}');">
+    <div mat-card-avatar (click)="fileInput.click()" class="avatar-card"
+      style="background-image: url('{{image}}');">
     </div>
+    <input #fileInput type="file" (change)="onFileChanged($event)" style="display: none;">
     <div fxLayout="column" fxFlex="70">
       <mat-form-field appearance="outline">
         <input matInput placeholder="name" formControlName="name">

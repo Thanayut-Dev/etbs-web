@@ -3,7 +3,7 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <td mat-cell *matCellDef="let row; let i = index;">{{i + 1}}</td>
     </ng-container>
 
     <!-- Name Column -->
@@ -12,14 +12,37 @@
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
     </ng-container>
 
+    <!-- Menu Column -->
+    <ng-container matColumnDef="menu">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['form/' + row._id]">
+            <mat-icon>edit</mat-icon>
+            <span>แก้ไข</span>
+          </button>
+          <button mat-menu-item (click)="deleteData(row)">
+            <mat-icon>delete</mat-icon>
+            <span>ลบ</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="50"
-      [pageSizeOptions]="[25, 50, 100, 250]">
+  <div class="add-button-end">
+    <button mat-fab color="warn" aria-label="Example icon button with a home icon" [routerLink]="['form/new']">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="25"
+    [pageSizeOptions]="[25, 50, 100, 250]">
   </mat-paginator>
 </div>

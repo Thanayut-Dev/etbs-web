@@ -144,7 +144,7 @@ export class FormComponent implements OnInit {
   }
 
   downLoadFile(data: any) {
-    console.log(data);
+    // console.log(data);
     var url = 'data:text/csv;charset=utf-8,' + data;
 
     var downloadLink = document.createElement("a");

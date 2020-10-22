@@ -6,13 +6,26 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SourceService } from './source.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { FormComponent } from './form/form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  // {
-  //   path: 'form/:id',
-  //   component: FormComponent,
-  //   resolve: { item: BankService }
-  // },
+  {
+    path: 'form/:id',
+    component: FormComponent,
+    resolve: { item: SourceService }
+  },
   {
     path: '**',
     component: ListComponent,
@@ -21,13 +34,26 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, FormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    FlexLayoutModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
   ]
 })
 export class SourceModule { }

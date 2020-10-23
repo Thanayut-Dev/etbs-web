@@ -31,7 +31,11 @@ export class FormComponent implements OnInit {
     { name: 'Footer', value: 'footer' }
   ];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private bankService: BankService, private location: Location,) { }
+  constructor(private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private bankService: BankService,
+    private location: Location,
+    ) { }
   ngOnInit(): void {
     let data = this.route.snapshot.data.item;
     this.bankForm = this.createForm(data)

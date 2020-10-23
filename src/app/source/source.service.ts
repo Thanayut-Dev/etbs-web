@@ -22,11 +22,79 @@ export class SourceService implements Resolve<any> {
   constructor(private http: HttpClient) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // console.log(route);
-    return this.getDataList();
+    this.routeParam = route.params;
+    if (this.routeParam.id) {
+      if (this.routeParam.id !== 'new') {
+        return this.getDataById(this.routeParam.id);
+      }
+      return this.initiaiData();
+    } else {
+      return this.getDataList();
+    }
+
   }
   getDataList() {
     return this.http.get(api_url, { headers: this.authorizationHeader() })
+  }
+
+  initiaiData() {
+    let body;
+    return body = {
+      name: "",
+      sourcetype: "db",
+      sourcedb: {
+        dbtype: "",
+        host: "",
+        username: "",
+        password: "",
+      },
+      sourcefile: {
+        filetype: "",
+        filepath: ""
+      },
+      query: "",
+      fields: [
+        {
+          fieldname: "",
+          fieldtype: "string",
+          fieldlength: 50,
+          defaultvalue: "",
+          seq: 1,
+          example: ""
+        }
+      ]
+    }
+  }
+
+  getDataById(id): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(api_url + id, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      })
+    })
+  }
+
+  saveData(body): Promise<any> {
+    if (!body._id) {
+      return this.createData(body);
+    } else {
+      return this.updateData(body);
+    }
+  }
+
+  createData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(api_url, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      }, reject);
+    })
+  }
+  updateData(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(api_url + body._id, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      }, reject);
+    })
   }
 
   deleteData(body): Promise<any> {

@@ -12,7 +12,8 @@
     <input #fileInput type="file" (change)="onFileChanged($event)" style="display: none;">
     <div fxLayout="column" fxFlex="70">
       <mat-form-field appearance="outline">
-        <input matInput placeholder="name" formControlName="name">
+        <mat-label>Bankname</mat-label>
+        <input matInput placeholder="Bankname" formControlName="name">
       </mat-form-field>
       <mat-radio-group formControlName="separatetype">
         <mat-radio-button fxFlex [value]="false">Fix Length</mat-radio-button>
@@ -20,7 +21,8 @@
       </mat-radio-group>
       <ng-template [ngIf]="!bankForm.value.separatetype">
         <mat-form-field appearance="outline" class="mat-form-top">
-          <input matInput placeholder="Separate Char" formControlName="separatechar">
+          <mat-label>Separatechar</mat-label>
+          <input matInput placeholder="Separatechar" formControlName="separatechar">
         </mat-form-field>
       </ng-template>
     </div>
@@ -42,13 +44,16 @@
                     <mat-panel-description>
                       <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
+                          <mat-label>Rowname</mat-label>
                           <input matInput placeholder="Rowname" formControlName="rowname" name="rowname">
                         </mat-form-field>
                       </div>
                       <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex>
                         <mat-form-field appearance="outline" fxFlex="90">
+                          <mat-label>Rowtype</mat-label>
                           <mat-select placeholder="Rowtype" formControlName="rowtype" name="rowtype">
-                            <mat-option *ngFor="let item of rowtype" [value]="item.value">{{item.name}}
+                            <mat-option *ngFor="let item of rowtype" [value]="item.value">
+                              {{item.name}}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -85,12 +90,14 @@
                               </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">
+                                  <mat-label>Fieldname</mat-label>
                                   <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
                                 </mat-form-field>
                               </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">
-                                  <mat-select placeholder="placeholder" formControlName="fieldtype" name="fieldtype">
+                                  <mat-label>Fieldtype</mat-label>
+                                  <mat-select placeholder="Fieldtype" formControlName="fieldtype" name="fieldtype">
                                     <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
                                     </mat-option>
                                   </mat-select>
@@ -98,12 +105,14 @@
                               </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">
+                                  <mat-label>Length</mat-label>
                                   <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
                                 </mat-form-field>
                               </td>
                               <td [formGroupName]="idy">
                                 <mat-form-field appearance="outline">
-                                  <input matInput placeholder="Example Data" formControlName="example" name="example">
+                                  <mat-label>Exampledata</mat-label>
+                                  <input matInput placeholder="Exampledata" formControlName="example" name="example">
                                 </mat-form-field>
                               </td>
                               <td [formGroupName]="idy" class="checkbox-content">
@@ -148,12 +157,6 @@
                 Add Rows
               </button>
             </div>
-            <!-- <div fxLayout="row wrap" fxLayoutAlign="end" class="row-button-div">
-              <button mat-raised-button color="primary" class="add-rows-button" (click)="addNewRow()">
-                <mat-icon class="icon-add">add</mat-icon>
-                Add Rows
-              </button>
-            </div> -->
           </div>
           <!-- {{bankForm.value | json}} -->
         </form>

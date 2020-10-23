@@ -1,100 +1,157 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
-    <mat-card-header>
-      <mat-card-title>Shipping Information</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Company" formControlName="company">
-          </mat-form-field>
-        </div>
+<mat-card>
+  <mat-card-header fxLayoutAlign="space-around stretch">
+    <h3 fxFlex>Format File</h3>
+    <button mat-fab color="warn" [disabled]="sourceForm && sourceForm.invalid" (click)="onSaveData()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-header>
+  <form [formGroup]="sourceForm" fxLayoutAlign="space-around stretch">
+    <div fxLayout="column" fxFlex="100">
+      <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Sourcename</mat-label>
+          <input matInput placeholder="Sourcename" formControlName="name" name="name">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName">
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName">
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100" class="redio-bolck">
+        <mat-radio-group formControlName="sourcetype" name="sourcetype">
+          <mat-radio-button fxFlex *ngFor="let item of sourcetype" [value]="item.value">
+            {{item.name}}
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Address" formControlName="address"></textarea>
-            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
-              Address is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
+      <ng-template [ngIf]="sourceForm.value.sourcetype === 'db'">
+        <div fxLayout="column" fxFlex="100" class="boder-bolck" formGroupName="sourcedb">
+          <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100" class="redio-bolck">
+            <mat-radio-group formControlName="dbtype" name="dbtype">
+              <mat-radio-button fxFlex *ngFor="let item of dbtype" [value]="item.value">
+                {{item.name}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout="column" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Host</mat-label>
+                <input matInput formControlName="host" name="host" placeholder="Host">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" name="username" placeholder="Username">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" name="password" placeholder="Password">
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row" *ngIf="!hasUnitNumber">
-        <div class="col">
-          <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">
-            + Add C/O, Apt, Suite, Unit
-          </button>
+      </ng-template>
+      <ng-template [ngIf]="sourceForm.value.sourcetype === 'file'">
+        <div fxLayout="column" fxFlex="100" class="boder-bolck" formGroupName="sourcefile">
+          <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100" class="redio-bolck">
+            <mat-radio-group formControlName="filetype" name="filetype">
+              <mat-radio-button fxFlex *ngFor="let item of filetype" [value]="item.value">
+                {{item.name}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Filepath</mat-label>
+              <input matInput formControlName="filepath" name="filepath" placeholder="Filepath">
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div class="row" *ngIf="hasUnitNumber">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Address 2" formControlName="address2"></textarea>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="City" formControlName="city">
-            <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
-              City is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-select placeholder="State" formControlName="state">
-              <mat-option *ngFor="let state of states" [value]="state.abbreviation">
-                {{ state.name }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
-              State is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
-            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-radio-group formControlName="shipping">
-            <mat-radio-button value="free">Free Shipping</mat-radio-button>
-            <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
-            <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
-          </mat-radio-group>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
+      </ng-template>
+      <!-- {{sourceForm.value | json}} -->
+    </div>
+  </form>
+  <mat-card-content>
+    <mat-tab-group class="scroll-bar">
+      <mat-tab label="Tab 1">
+        <form [formGroup]="sourceForm">
+          <div fxLayout="column" fxFlex="100">
+            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+              <mat-form-field class="example-full-width" appearance="outline" fxFlex="100">
+                <mat-label>SQL</mat-label>
+                <textarea matInput formControlName="query" name="query" placeholder="query"></textarea>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100">
+              <button mat-raised-button color="primary">Query</button>
+            </div>
+            <div fxLayout="row wrap" fxFlex="70">
+              <table fxFlex>
+                <tr>
+                  <th>No.</th>
+                  <th>Fieldname</th>
+                  <th>Fieldtype</th>
+                  <th>Fieldlength</th>
+                  <th>Default value</th>
+                  <th>Example data</th>
+                  <th></th>
+                </tr>
+                <tr formArrayName="fields" *ngFor="let field of fieldFormControl(); let idy = index;">
+                  <td [formGroupName]="idy">
+                    {{idy + 1}}
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fieldname</mat-label>
+                      <input matInput placeholder="Fieldname" formControlName="fieldname" name="fieldname">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fieldtype</mat-label>
+                      <mat-select placeholder="Fieldtype" formControlName="fieldtype" name="fieldtype">
+                        <mat-option *ngFor="let item of fieldtype" [value]="item.value">{{item.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Length</mat-label>
+                      <input matInput placeholder="Length" formControlName="fieldlength" name="fieldlength">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Defaultvalue</mat-label>
+                      <input matInput placeholder="Defaultvalue" formControlName="defaultvalue" name="defaultvalue">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Exampledata</mat-label>
+                      <input matInput placeholder="Exampledata" formControlName="example" name="example">
+                    </mat-form-field>
+                  </td>
+                  <td [formGroupName]="idy">
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon"
+                      (click)="deleteField(idy)">
+                      <mat-icon class="icon-delete">clear</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="end" fxFlex="100">
+              <button mat-raised-button color="primary" class="add-fields-button" (click)="addFieldItem()">
+                <mat-icon class="icon-add">add</mat-icon>
+                Add Fields
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Tab 2">Content 2</mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

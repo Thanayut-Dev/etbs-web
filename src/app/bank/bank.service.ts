@@ -79,7 +79,6 @@ export class BankService implements Resolve<any> {
   }
 
   saveData(body): Promise<any> {
-    console.log(body);
     if (!body._id) {
       return this.createData(body);
     } else {

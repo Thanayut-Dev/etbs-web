@@ -1,27 +1,62 @@
-.full-width {
-  width: 100%;
+.scroll-bar {
+  overflow: auto;
+  max-height: 650px;
 }
 
-.shipping-card {
-  min-width: 120px;
-  margin: 20px auto;
+.mat-radio-button~.mat-radio-button {
+  margin-left: 16px;
 }
 
-.mat-radio-button {
-  display: block;
-  margin: 5px 0;
+.redio-bolck {
+  margin-bottom: 10px;
 }
 
-.row {
-  display: flex;
+.boder-bolck {
+  margin: 10px;
+  padding: 20px;
+  border: solid grey 2px;
+  border-radius: 5px;
+}
+
+.icon-delete {
+  color: red;
+  padding-bottom: 40px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
   flex-direction: row;
+  box-sizing: border-box;
+
+  border: solid #dddddd 2px;
+  min-height: 100;
+  margin-top: 20px;
+  padding: 20px;
 }
 
-.col {
-  flex: 1;
-  margin-right: 20px;
+th {
+  text-align: center;
+  padding: 8px;
+  background-color: #dddddd;
 }
 
-.col:last-child {
-  margin-right: 0;
+td {
+  text-align: center;
 }
+
+.icon-add {
+  padding-bottom: 5px;
+}
+
+// .checkbox-content {
+//   padding-left: 10px;
+//   padding-right: 10px;
+//   padding-bottom: 15px;
+// }
+
+.add-fields-button {
+  margin-top: 20px;
+  font-size: 12px;
+}
+

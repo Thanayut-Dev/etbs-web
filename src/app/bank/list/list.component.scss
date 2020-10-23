@@ -7,3 +7,27 @@
   right: 10px;
   bottom: 70px;
 }
+
+.title-name {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+$mat-card-header-size: 5rem !default;
+
+.mat-card-avatar {
+  height: $mat-card-header-size;
+  width: $mat-card-header-size;
+  background-size: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  // Makes `<img>` tags behave like `background-size: cover`. Not supported
+  // in IE, but we're using it as a progressive enhancement.
+  object-fit: cover;
+}
+
+.avatar-name {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

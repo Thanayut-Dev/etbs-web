@@ -1,0 +1,30 @@
+{
+    "name": "bay",
+    "image": "http://",
+    "separatetype": false,
+    "separatechar": ";",
+    "rows": [
+        {
+            "rowname": "001",
+            "rowtype": "header",
+            "required": true,
+            "fields": [
+                {
+                    "fieldname": "Name",
+                    "fieldtype": "string",
+                    "fieldlength": 50,
+                    "required": false,
+                    "defaultvalue": "",
+                    "seq": 1,
+                    "example": "example"
+                }
+            ]
+        }
+    ],
+    "encrypt": false,
+    "upload": false,
+    "limitamount": false,
+    "encryptcmd": "encryptCmd",
+    "uploadcmd": "uploadCmd",
+    "maxamount": 200
+}

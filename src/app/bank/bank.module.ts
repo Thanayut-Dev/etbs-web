@@ -19,6 +19,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TemplateComponent } from './template/template.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent, FormComponent],
+  declarations: [ListComponent, FormComponent, TemplateComponent],
   imports: [
     CommonModule,
     MatTableModule,

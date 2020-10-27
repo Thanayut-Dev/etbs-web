@@ -1,0 +1,45 @@
+{
+    "name": "bay",
+    "template": {
+        "id": "id",
+        "name": "name",
+        "separatetype": false,
+        "separatechar": ";"
+    },
+    "datasource": {
+        "driver": "driver",
+        "host": "host",
+        "database": "database",
+        "username": "username",
+        "password": "password"
+    },
+    "rows": [
+        {
+            "name": "001",
+            "rowtype": "header",
+            "required": true,
+            "groupby": [
+                ""
+            ],
+            "fields": [
+                {
+                    "name": "Name",
+                    "fieldtype": "string",
+                    "length": 50,
+                    "datafieldname": "datafieldname",
+                    "required": false,
+                    "sum": "sum",
+                    "count": "count",
+                    "formula": "formula",
+                    "seq": 1
+                }
+            ]
+        }
+    ],
+    "encrypt": false,
+    "upload": false,
+    "limitamount": false,
+    "encryptcmd": "encryptCmd",
+    "uploadcmd": "uploadCmd",
+    "maxamount": 200
+}

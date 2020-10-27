@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // console.log(this.route.snapshot.data.item);
+    // console.log(this.route.snapshot.params);
     let data = this.route.snapshot.data.item;
     this.sourceForm = this.createForm(data);
   }

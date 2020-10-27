@@ -1,3 +1,4 @@
+import { BankService } from './../../bank/bank.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,14 +19,23 @@ export class ListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<ListItem>;
   dataSource: ListDataSource;
+  templateData: any;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'menu'];
-  constructor(private route: ActivatedRoute, private sourceService: SourceService,public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute,
+    private sourceService: SourceService,
+    public dialog: MatDialog,
+    private bankService: BankService
+  ) { }
 
   ngOnInit() {
     // console.log(this.route.snapshot.data.items.data);
     this.dataSource = new ListDataSource(this.route.snapshot.data.items.data);
+
+    this.bankService.getDataList().subscribe((res: any) => {
+      this.templateData = res.data;
+    })
   }
 
   ngAfterViewInit() {
@@ -42,11 +52,16 @@ export class ListComponent implements AfterViewInit, OnInit {
     })
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(TemplateComponent);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TemplateComponent, {
+      width: '900px',
+      height: '500px',
+      data: this.templateData
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log('The dialog was closed');
+      // this.animal = result;
     });
   }
 

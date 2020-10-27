@@ -6,295 +6,287 @@
     </button>
   </mat-card-header>
   <form [formGroup]="sourceForm">
-    <div fxLayout="column wrap">
-      <div fxLayout="row wrap" fxFlex="60">
-        1
+
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100">
+      <div fxFlex="100" fxFlex.gt-xs="60">
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Report-Header</h3>
+            <div fxLayout="row wrap">
+
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Report-Group</h3>
+            <div fxLayout="row wrap">
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Report-Detail</h3>
+            <div fxLayout="row wrap">
+            </div>
+          </div>
+        </div>
       </div>
-      <div fxLayout="row wrap" fxFlex="40">
-        2
+      <div fxFlex="100" fxFlex.gt-xs="40">
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Report</h3>
+            <div fxLayout="row wrap">
+              <table fxFlex>
+                <tr>
+                  <th>key</th>
+                  <th>value</th>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Name</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Template</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Template</mat-label>
+                      <input matInput placeholder="Template">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Data Source</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Data Source</mat-label>
+                      <input matInput placeholder="Data Source">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Host</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Host</mat-label>
+                      <input matInput placeholder="Host">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Database</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Database</mat-label>
+                      <input matInput placeholder="Database">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>User Name</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>User Name</mat-label>
+                      <input matInput placeholder="User Name">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Password</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <input matInput placeholder="Password">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Rows</h3>
+            <div fxLayout="row wrap">
+              <table fxFlex>
+                <tr>
+                  <th>key</th>
+                  <th>value</th>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Name</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Row Type</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Row Type</mat-label>
+                      <input matInput placeholder="Row Type">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Require</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Require</mat-label>
+                      <input matInput placeholder="Require">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Group By</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Group By</mat-label>
+                      <input matInput placeholder="Group By">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row wrap">
+          <div fxLayout="column wrap" fxFlex>
+            <h3>Field</h3>
+            <div fxLayout="row wrap">
+              <table fxFlex>
+                <tr>
+                  <th>key</th>
+                  <th>value</th>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Name</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Name">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Field Type</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Field Type</mat-label>
+                      <input matInput placeholder="Field Type">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Require</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Require</mat-label>
+                      <input matInput placeholder="Require">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Length</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Length</mat-label>
+                      <input matInput placeholder="Length">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Data Field name</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Data Field name</mat-label>
+                      <input matInput placeholder="Data Field name">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Sum</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Sum</mat-label>
+                      <input matInput placeholder="Sum">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Count</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Count</mat-label>
+                      <input matInput placeholder="Count">
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td fxLayoutAlign="center">
+                    <h4>Formula</h4>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Formula</mat-label>
+                      <input matInput placeholder="Formula">
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- <div fxLayout="column wrap" fxFlex="60">
-
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Report-Header</h3>
-          <div fxLayout="row wrap">
-
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Report-Group</h3>
-          <div fxLayout="row wrap">
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Report-Detail</h3>
-          <div fxLayout="row wrap">
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div fxLayout="column wrap" fxFlex="40">
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Report</h3>
-          <div fxLayout="row wrap">
-            <table fxFlex>
-              <tr>
-                <th>key</th>
-                <th>value</th>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Name</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Template</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Template</mat-label>
-                    <input matInput placeholder="Template">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Data Source</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Data Source</mat-label>
-                    <input matInput placeholder="Data Source">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Host</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Host</mat-label>
-                    <input matInput placeholder="Host">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Database</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Database</mat-label>
-                    <input matInput placeholder="Database">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>User Name</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>User Name</mat-label>
-                    <input matInput placeholder="User Name">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Password</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password">
-                  </mat-form-field>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Rows</h3>
-          <div fxLayout="row wrap">
-            <table fxFlex>
-              <tr>
-                <th>key</th>
-                <th>value</th>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Name</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Row Type</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Row Type</mat-label>
-                    <input matInput placeholder="Row Type">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Require</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Require</mat-label>
-                    <input matInput placeholder="Require">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Group By</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Group By</mat-label>
-                    <input matInput placeholder="Group By">
-                  </mat-form-field>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div fxLayout="row wrap">
-        <div fxLayout="column wrap" fxFlex>
-          <h3>Field</h3>
-          <div fxLayout="row wrap">
-            <table fxFlex>
-              <tr>
-                <th>key</th>
-                <th>value</th>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Name</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Field Type</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Field Type</mat-label>
-                    <input matInput placeholder="Field Type">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Require</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Require</mat-label>
-                    <input matInput placeholder="Require">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Length</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Length</mat-label>
-                    <input matInput placeholder="Length">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Data Field name</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Data Field name</mat-label>
-                    <input matInput placeholder="Data Field name">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Sum</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Sum</mat-label>
-                    <input matInput placeholder="Sum">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Count</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Count</mat-label>
-                    <input matInput placeholder="Count">
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td fxLayoutAlign="center">
-                  <h4>Formula</h4>
-                </td>
-                <td>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Formula</mat-label>
-                    <input matInput placeholder="Formula">
-                  </mat-form-field>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
   </form>
   <mat-card-content>

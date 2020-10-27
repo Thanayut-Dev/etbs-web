@@ -1,36 +1,36 @@
 {
-    "name": "bay",
+    "name": "AP-BAY-V1",
     "template": {
-        "id": "id",
-        "name": "name",
+        "id": "123",
+        "name": "BAY",
         "separatetype": false,
         "separatechar": ";"
     },
     "datasource": {
-        "driver": "driver",
-        "host": "host",
-        "database": "database",
-        "username": "username",
-        "password": "password"
+        "driver": "MSSQL",
+        "host": "Localhost",
+        "database": "AP",
+        "username": "sa",
+        "password": "*******"
     },
     "rows": [
         {
-            "name": "001",
-            "rowtype": "header",
+            "name": "Batch",
+            "rowtype": "Group",
             "required": true,
             "groupby": [
-                ""
+                "Product"
             ],
             "fields": [
                 {
-                    "name": "Name",
-                    "fieldtype": "string",
-                    "length": 50,
-                    "datafieldname": "datafieldname",
-                    "required": false,
-                    "sum": "sum",
-                    "count": "count",
-                    "formula": "formula",
+                    "name": "Record Type",
+                    "fieldtype": "Data Field",
+                    "length": 1,
+                    "datafieldname": "rec_type",
+                    "required": true,
+                    "sum": "None",
+                    "count": "None",
+                    "formula": "None",
                     "seq": 1
                 }
             ]

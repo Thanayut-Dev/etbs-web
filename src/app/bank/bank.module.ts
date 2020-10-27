@@ -19,7 +19,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { TemplateComponent } from './template/template.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent, FormComponent, TemplateComponent],
+  declarations: [ListComponent, FormComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -54,7 +54,8 @@ const routes: Routes = [
     FlexLayoutModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ]
 })
 export class BankModule { }

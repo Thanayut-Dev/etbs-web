@@ -1,45 +1,893 @@
 {
-    "name": "AP-BAY-V1",
-    "template": {
-        "id": "123",
-        "name": "BAY",
-        "separatetype": false,
-        "separatechar": ";"
-    },
-    "datasource": {
-        "driver": "MSSQL",
-        "host": "Localhost",
-        "database": "AP",
-        "username": "sa",
-        "password": "*******"
-    },
-    "rows": [
+  "name": "AP-BAY-V1",
+  "template": {
+    "id": "123",
+    "name": "BAY",
+    "separatetype": false,
+    "separatechar": ";"
+  },
+  "datasource": {
+    "driver": "MSSQL",
+    "host": "Localhost",
+    "database": "AP",
+    "username": "sa",
+    "password": "*******"
+  },
+  "rows": [
+    {
+      "fields": [
         {
-            "name": "Batch",
-            "rowtype": "Group",
-            "required": true,
-            "groupby": [
-                "Product"
-            ],
-            "fields": [
-                {
-                    "name": "Record Type",
-                    "fieldtype": "Data Field",
-                    "length": 1,
-                    "datafieldname": "rec_type",
-                    "required": true,
-                    "sum": "None",
-                    "count": "None",
-                    "formula": "None",
-                    "seq": 1
-                }
-            ]
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "F"
+        },
+        {
+          "fieldname": "format version",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "01"
+        },
+        {
+          "fieldname": "input / output flag",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "I"
+        },
+        {
+          "fieldname": "hash",
+          "fieldtype": "char",
+          "fieldlength": 100,
+          "required": false,
+          "example": ""
         }
-    ],
-    "encrypt": false,
-    "upload": false,
-    "limitamount": false,
-    "encryptcmd": "encryptCmd",
-    "uploadcmd": "uploadCmd",
-    "maxamount": 200
+      ],
+      "rowname": "File Controller",
+      "rowtype": "header",
+      "required": true
+    },
+    {
+      "fields": [
+        {
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "B"
+        },
+        {
+          "fieldname": "Batch ref",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "batchA"
+        },
+        {
+          "fieldname": "Batch ref from GCP (Uniq)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "01234567890123456789"
+        },
+        {
+          "fieldname": "Payment debit acct / collection credit acct",
+          "fieldtype": "char",
+          "fieldlength": 16,
+          "required": true,
+          "example": "7771231234"
+        },
+        {
+          "fieldname": "Account Currency",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": true,
+          "example": "THB"
+        },
+        {
+          "fieldname": "my product",
+          "fieldtype": "char",
+          "fieldlength": 10,
+          "required": true,
+          "example": "BAYCHEQUE"
+        },
+        {
+          "fieldname": "transaction date",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": true,
+          "example": "31122012"
+        },
+        {
+          "fieldname": "Check dup acct",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "No. of transaction",
+          "fieldtype": "number",
+          "fieldlength": 6,
+          "required": true,
+          "example": "1"
+        },
+        {
+          "fieldname": "Total Amount",
+          "fieldtype": "number",
+          "fieldlength": 20,
+          "required": true,
+          "example": "100.75"
+        },
+        {
+          "fieldname": "No. of reject transactions",
+          "fieldtype": "number",
+          "fieldlength": 6,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Total reject amount",
+          "fieldtype": "number",
+          "fieldlength": 20,
+          "required": false,
+          "example": "20"
+        }
+      ],
+      "rowname": "Batch Controller",
+      "rowtype": "product",
+      "required": true
+    },
+    {
+      "fields": [
+        {
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "T"
+        },
+        {
+          "fieldname": "Instruction Ref.",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "Payment 001"
+        },
+        {
+          "fieldname": "Customer Ref.",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Reference 1",
+          "fieldtype": "char",
+          "fieldlength": 60,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Reference 2",
+          "fieldtype": "char",
+          "fieldlength": 60,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Reference 3",
+          "fieldtype": "char",
+          "fieldlength": 95,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Transaction Detail",
+          "fieldtype": "char",
+          "fieldlength": 255,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Transaction credit time",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "28"
+        },
+        {
+          "fieldname": "Service type",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "01"
+        },
+        {
+          "fieldname": "Payment Amount",
+          "fieldtype": "number",
+          "fieldlength": 20,
+          "required": true,
+          "example": "00000000000000107.00"
+        },
+        {
+          "fieldname": "Charges Borne By",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "0"
+        },
+        {
+          "fieldname": "Delivery Mode",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": true,
+          "example": "E"
+        },
+        {
+          "fieldname": "Third Party Code",
+          "fieldtype": "char",
+          "fieldlength": 10,
+          "required": false,
+          "example": "0123456789"
+        },
+        {
+          "fieldname": "Filler",
+          "fieldtype": "char",
+          "fieldlength": 6,
+          "required": true,
+          "example": ""
+        },
+        {
+          "fieldname": "VendorID",
+          "fieldtype": "char",
+          "fieldlength": 16,
+          "required": false,
+          "example": "123"
+        },
+        {
+          "fieldname": "Third Party name",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": true,
+          "example": "Krungsri1 co.,pcl."
+        },
+        {
+          "fieldname": "Third Party Mailing Name",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "Krungsri2 co.,pcl."
+        },
+        {
+          "fieldname": "Third Party Address",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": true,
+          "example": "111 Rama 3 rd., Yannawa BKK 10210"
+        },
+        {
+          "fieldname": "Third Party Mailing Address",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "222 Rama 3 rd., Yannawa BKK 10210"
+        },
+        {
+          "fieldname": "Third Party fax no",
+          "fieldtype": "char",
+          "fieldlength": 25,
+          "required": false,
+          "example": "021111111"
+        },
+        {
+          "fieldname": "Third Party email address",
+          "fieldtype": "char",
+          "fieldlength": 150,
+          "required": false,
+          "example": "test@test.com"
+        },
+        {
+          "fieldname": "Third Party mobile no",
+          "fieldtype": "char",
+          "fieldlength": 25,
+          "required": false,
+          "example": "0891111111"
+        },
+        {
+          "fieldname": "Third Party bank",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "002"
+        },
+        {
+          "fieldname": "Third Party branch",
+          "fieldtype": "char",
+          "fieldlength": 4,
+          "required": false,
+          "example": "0123"
+        },
+        {
+          "fieldname": "Third Party Account",
+          "fieldtype": "char",
+          "fieldlength": 16,
+          "required": false,
+          "example": "0123456789"
+        },
+        {
+          "fieldname": "Third Party Account Currency",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "THB"
+        },
+        {
+          "fieldname": "bic",
+          "fieldtype": "char",
+          "fieldlength": 11,
+          "required": false,
+          "example": "AYUDTHBK"
+        },
+        {
+          "fieldname": "iban",
+          "fieldtype": "char",
+          "fieldlength": 50,
+          "required": false,
+          "example": "GB29 NWBK 6016 1331 9268 19"
+        },
+        {
+          "fieldname": "Pickup branch",
+          "fieldtype": "char",
+          "fieldlength": 0,
+          "required": false,
+          "example": "0777"
+        },
+        {
+          "fieldname": "Payment details / Document for verify cheque receiver",
+          "fieldtype": "char",
+          "fieldlength": 0,
+          "required": false,
+          "example": "ID Card, Invoice No.1"
+        },
+        {
+          "fieldname": "CorpCheque (Crossing Oder)",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "01"
+        },
+        {
+          "fieldname": "1TAXID",
+          "fieldtype": "char",
+          "fieldlength": 15,
+          "required": false,
+          "example": "3030123456789"
+        },
+        {
+          "fieldname": "2CONTROLCO",
+          "fieldtype": "char",
+          "fieldlength": 15,
+          "required": false,
+          "example": "012345678901234"
+        },
+        {
+          "fieldname": "3TAXTYPE",
+          "fieldtype": "char",
+          "fieldlength": 5,
+          "required": false,
+          "example": "10001"
+        },
+        {
+          "fieldname": "status Code:",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "00"
+        },
+        {
+          "fieldname": "Status Reason",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "PAID"
+        },
+        {
+          "fieldname": "cheque no",
+          "fieldtype": "char",
+          "fieldlength": 10,
+          "required": false,
+          "example": "1231231"
+        },
+        {
+          "fieldname": "cheque status",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "00"
+        },
+        {
+          "fieldname": "cheque status Update date",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Delivery Status",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "00"
+        },
+        {
+          "fieldname": "Delivery Status Update date",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Transaction ref form GCP (Uniq)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": ""
+        },
+        {
+          "fieldname": "Third Party Bank Country",
+          "fieldtype": "char",
+          "fieldlength": 2,
+          "required": false,
+          "example": "US"
+        },
+        {
+          "fieldname": "Payment Purpose Code",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "OTH"
+        },
+        {
+          "fieldname": "Payment Purpose Description",
+          "fieldtype": "char",
+          "fieldlength": 140,
+          "required": false,
+          "example": ""
+        }
+      ],
+      "rowname": "Transaction Detail",
+      "rowtype": "transection",
+      "required": true
+    },
+    {
+      "fields": [
+        {
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "W"
+        },
+        {
+          "fieldname": "Type of  Tax",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "1"
+        },
+        {
+          "fieldname": "WHT payment type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "4"
+        },
+        {
+          "fieldname": "WHT payment type 4 Description",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "Haft year paid"
+        },
+        {
+          "fieldname": "Sequence flag",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "1"
+        },
+        {
+          "fieldname": "Customer Seq. Month (Left side)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "123123"
+        },
+        {
+          "fieldname": "Customer Seq. Year (Top Right side)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "123123"
+        },
+        {
+          "fieldname": "Payer Name",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "Krungsri8 co.,pcl."
+        },
+        {
+          "fieldname": "Payer Address",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "888 Rama 3 rd., Yannawa BKK 10210"
+        },
+        {
+          "fieldname": "Payer Tax ID",
+          "fieldtype": "char",
+          "fieldlength": 13,
+          "required": false,
+          "example": "0123456789012"
+        },
+        {
+          "fieldname": "Payee Name",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "Krungsri9 co.,pcl."
+        },
+        {
+          "fieldname": "Payee Address",
+          "fieldtype": "char",
+          "fieldlength": 200,
+          "required": false,
+          "example": "999 Rama 3 rd., Yannawa BKK 10210"
+        },
+        {
+          "fieldname": "Income Type 1",
+          "fieldtype": "char",
+          "fieldlength": 13,
+          "required": false,
+          "example": "0123456789012"
+        },
+        {
+          "fieldname": "Income Type 1",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": true,
+          "example": "061"
+        },
+        {
+          "fieldname": "WHT Rate 1",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": true,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Description 1",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": true,
+          "example": "Service"
+        },
+        {
+          "fieldname": "Income Amount 1",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": true,
+          "example": "100"
+        },
+        {
+          "fieldname": "WHT Amount 1",
+          "fieldtype": "char",
+          "fieldlength": 12,
+          "required": true,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Deducted Date 1",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": true,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Income Type 2",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "061"
+        },
+        {
+          "fieldname": "WHT Rate 2",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Description 2",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "Service"
+        },
+        {
+          "_id": "5f8a9651c169c810904b5f63",
+          "fieldname": "Income Amount 2",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "100"
+        },
+        {
+          "fieldname": "WHT Amount 2",
+          "fieldtype": "char",
+          "fieldlength": 12,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Deducted Date 2",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Income Type 3",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "061"
+        },
+        {
+          "fieldname": "WHT Rate 3",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Description 3",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "Service"
+        },
+        {
+          "fieldname": "Income Amount3",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "100"
+        },
+        {
+          "fieldname": "WHT Amount 3",
+          "fieldtype": "char",
+          "fieldlength": 12,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Deducted Date 3",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Income Type 4",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "061"
+        },
+        {
+          "fieldname": "WHT Rate 4",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Description 4",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "Service"
+        },
+        {
+          "fieldname": "Income Amount 4",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "100"
+        },
+        {
+          "fieldname": "WHT Amount 4",
+          "fieldtype": "char",
+          "fieldlength": 12,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Deducted Date 4",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        },
+        {
+          "fieldname": "Income Type 5",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "061"
+        },
+        {
+          "fieldname": "WHT Rate 5",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Description 5",
+          "fieldtype": "char",
+          "fieldlength": 35,
+          "required": false,
+          "example": "Service"
+        },
+        {
+          "fieldname": "Income Amount 5",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "100"
+        },
+        {
+          "fieldname": "WHT Amount 5",
+          "fieldtype": "char",
+          "fieldlength": 12,
+          "required": false,
+          "example": "3"
+        },
+        {
+          "fieldname": "WHT Deducted Date 5",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "31122011"
+        }
+      ],
+      "rowname": "WHT",
+      "rowtype": "transection",
+      "required": true
+    },
+    {
+      "fields": [
+        {
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": true,
+          "example": "I"
+        },
+        {
+          "fieldname": "sequence for Invoice",
+          "fieldtype": "char",
+          "fieldlength": 3,
+          "required": false,
+          "example": "001"
+        },
+        {
+          "fieldname": "Payment Document",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "Vendor Payment 001"
+        },
+        {
+          "fieldname": "Doc Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": false,
+          "example": "I"
+        },
+        {
+          "fieldname": "PO Number",
+          "fieldtype": "char",
+          "fieldlength": 50,
+          "required": false,
+          "example": "0123456789"
+        },
+        {
+          "fieldname": "Doc Number",
+          "fieldtype": "char",
+          "fieldlength": 50,
+          "required": false,
+          "example": "1234567890"
+        },
+        {
+          "fieldname": "Invoice No",
+          "fieldtype": "char",
+          "fieldlength": 50,
+          "required": false,
+          "example": "012345"
+        },
+        {
+          "fieldname": "Invoice Date",
+          "fieldtype": "char",
+          "fieldlength": 8,
+          "required": false,
+          "example": "13122012"
+        },
+        {
+          "fieldname": "Invoice Amount (+,-)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "-1000"
+        },
+        {
+          "fieldname": "Vat Amount (+,-)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "10"
+        },
+        {
+          "fieldname": "WHT Amount (+,-)",
+          "fieldtype": "char",
+          "fieldlength": 20,
+          "required": false,
+          "example": "+10"
+        },
+        {
+          "fieldname": "Invoice Description",
+          "fieldtype": "char",
+          "fieldlength": 255,
+          "required": false,
+          "example": "Invoice Detail 001"
+        }
+      ],
+      "rowname": "Invoice",
+      "rowtype": "transection",
+      "required": true
+    },
+    {
+      "fields": [
+        {
+          "fieldname": "Record Type",
+          "fieldtype": "char",
+          "fieldlength": 1,
+          "required": false,
+          "example": "V"
+        },
+        {
+          "fieldname": "Free Text",
+          "fieldtype": "char",
+          "fieldlength": 100,
+          "required": false,
+          "example": ""
+        }
+      ],
+      "rowname": "Invoice FreeText",
+      "rowtype": "transection",
+      "required": true
+    }
+  ],
+  "encrypt": false,
+  "upload": false,
+  "limitamount": false,
+  "encryptcmd": "encryptCmd",
+  "uploadcmd": "uploadCmd",
+  "maxamount": 200
 }

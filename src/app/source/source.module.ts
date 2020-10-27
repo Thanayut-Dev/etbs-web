@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TemplateComponent } from './template-modal/template.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -34,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ListComponent, FormComponent],
+  declarations: [ListComponent, FormComponent, TemplateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -53,7 +55,8 @@ const routes: Routes = [
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class SourceModule { }

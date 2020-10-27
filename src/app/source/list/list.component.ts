@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { ListDataSource, ListItem } from './list-datasource';
 import { ActivatedRoute } from '@angular/router';
 import { SourceService } from '../source.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TemplateComponent } from '../template-modal/template.component';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +21,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'menu'];
-  constructor(private route: ActivatedRoute, private sourceService: SourceService) { }
+  constructor(private route: ActivatedRoute, private sourceService: SourceService,public dialog: MatDialog) { }
 
   ngOnInit() {
     // console.log(this.route.snapshot.data.items.data);
@@ -39,4 +41,14 @@ export class ListComponent implements AfterViewInit, OnInit {
       })
     })
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(TemplateComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
 }

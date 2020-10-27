@@ -1,16 +1,16 @@
 {
-    "name": "bay",
+    "name": "BAY",
     "image": "http://",
     "separatetype": false,
     "separatechar": ";",
     "rows": [
         {
-            "rowname": "001",
+            "rowname": "Batch",
             "rowtype": "header",
             "required": true,
             "fields": [
                 {
-                    "fieldname": "Name",
+                    "fieldname": "Record Type",
                     "fieldtype": "string",
                     "fieldlength": 50,
                     "required": false,

@@ -3,16 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'bank',
+    path: 'template',
     loadChildren: () => import('./bank/bank.module').then(m => m.BankModule)
   },
   {
-    path: 'source',
+    path: 'dataset',
     loadChildren: () => import('./source/source.module').then(m => m.SourceModule)
   },
   {
     path: '**',
-    redirectTo: 'bank'
+    redirectTo: 'template'
   }
 ];
 

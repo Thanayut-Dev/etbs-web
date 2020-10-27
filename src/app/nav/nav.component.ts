@@ -17,8 +17,8 @@ export class NavComponent {
     );
 
     menuItem = [
-      "bank",
-      "source"
+      "template",
+      "dataset"
     ];
   constructor(private breakpointObserver: BreakpointObserver) {}
 

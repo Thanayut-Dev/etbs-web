@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 
-const api_url = environment.apiUrl + "/api/banks/";
+const api_url = environment.apiUrl + "/";
 const api_urlExample = environment.apiUrl + '/api/banks/example/txtfile/';
 
 @Injectable({

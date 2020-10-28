@@ -16,25 +16,25 @@ export class FormComponent implements OnInit {
   rows: FormArray;
   fields: FormArray;
 
-  sourcetype: any[] = [
-    { name: 'Databace', value: 'db' },
-    { name: 'File', value: 'file' }
-  ];
-  dbtype: any[] = [
-    { name: 'Mysql', value: 'sql' },
-    { name: 'Oracle', value: 'oracle' }
-  ];
-  filetype: any[] = [
-    { name: 'Excel', value: 'excel' },
-    { name: 'Json', value: 'json' }
-  ];
-  fieldtype: any[] = [
-    { name: 'string', value: 'string' },
-    { name: 'char', value: 'char' },
-    { name: 'number', value: 'number' },
-    { name: 'text', value: 'text' },
-    { name: 'date', value: 'date' }
-  ];
+  // sourcetype: any[] = [
+  //   { name: 'Databace', value: 'db' },
+  //   { name: 'File', value: 'file' }
+  // ];
+  // dbtype: any[] = [
+  //   { name: 'Mysql', value: 'sql' },
+  //   { name: 'Oracle', value: 'oracle' }
+  // ];
+  // filetype: any[] = [
+  //   { name: 'Excel', value: 'excel' },
+  //   { name: 'Json', value: 'json' }
+  // ];
+  // fieldtype: any[] = [
+  //   { name: 'string', value: 'string' },
+  //   { name: 'char', value: 'char' },
+  //   { name: 'number', value: 'number' },
+  //   { name: 'text', value: 'text' },
+  //   { name: 'date', value: 'date' }
+  // ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,20 +49,24 @@ export class FormComponent implements OnInit {
     if (this.route.snapshot.params.id === 'new') {
       let id = this.route.snapshot.params.dataId;
       this.bankService.getDataById(id).then((res: any) => {
-        this.sourceForm = this.createFormEdit(res);
+        this.sourceForm = this.createForm(res);
       })
     } else {
       let data = this.route.snapshot.data.item;
-      this.sourceForm = this.createForm(data);
+      this.sourceForm = this.createFormEdit(data);
     }
     // ของเก่า
     // let data = this.route.snapshot.data.item;
     // this.sourceForm = this.createForm(data);
   }
 
+
+
+  // createForm //
+
   createForm(data): FormGroup {
     return this.formBuilder.group({
-      _id: data._id,
+      _id: null,
       name: data.name,
       template: this.templateForm(data),
       datasource: this.datasourceForm(data),
@@ -78,6 +82,78 @@ export class FormComponent implements OnInit {
 
   templateForm(data) {
     return this.formBuilder.group({
+      _id: null,
+      name: data.name,
+      separatetype: data.separatetype,
+      separatechar: data.separatechar
+    })
+  }
+
+  datasourceForm(data) {
+    return this.formBuilder.group({
+      driver: "",
+      host: "",
+      database: "",
+      username: "",
+      password: ""
+    })
+  }
+
+  createRows(data): any[] {
+    let rows = [];
+    data.rows.forEach(row => {
+      rows.push(this.formBuilder.group({
+        name: row.rowname,
+        rowtype: row.rowtype,
+        required: row.required,
+        groupby: "",
+        fields: this.createFields(row)
+      }))
+    })
+    return rows;
+  }
+
+  createFields(row) {
+    let fields = this.formBuilder.array([]);
+    row.fields.forEach(field => {
+      fields.push(this.formBuilder.group({
+        name: field.fieldname,
+        fieldtype: field.fieldtype,
+        length: field.fieldlength,
+        datafieldname: "",
+        required: field.required,
+        sum: "",
+        count: "",
+        formula: ""
+      }))
+    })
+    return fields;
+  }
+
+
+
+
+
+  // createFormEdit //
+
+  createFormEdit(data): FormGroup {
+    return this.formBuilder.group({
+      _id: data._id,
+      name: data.name,
+      template: this.templateFormEdit(data),
+      datasource: this.datasourceFormEdit(data),
+      rows: this.formBuilder.array(this.createRowsEdit(data)),
+      encrypt: data.encrypt,
+      upload: data.upload,
+      limitamount: data.limitamount,
+      encryptcmd: data.encryptcmd,
+      uploadcmd: data.uploadcmd,
+      maxamount: data.maxamount
+    })
+  }
+
+  templateFormEdit(data) {
+    return this.formBuilder.group({
       _id: data.template._id,
       name: data.template.name,
       separatetype: data.template.separatetype,
@@ -85,7 +161,7 @@ export class FormComponent implements OnInit {
     })
   }
 
-  datasourceForm(data) {
+  datasourceFormEdit(data) {
     return this.formBuilder.group({
       driver: data.datasource.driver,
       host: data.datasource.host,
@@ -95,7 +171,7 @@ export class FormComponent implements OnInit {
     })
   }
 
-  createRows(data): any[] {
+  createRowsEdit(data): any[] {
     let rows = [];
     data.rows.forEach(row => {
       rows.push(this.formBuilder.group({
@@ -103,12 +179,13 @@ export class FormComponent implements OnInit {
         rowtype: row.rowtype,
         required: row.required,
         groupby: row.groupby,
-        fields: this.createFields(row)
+        fields: this.createFieldsEdit(row)
       }))
     })
     return rows;
   }
-  createFields(row) {
+
+  createFieldsEdit(row) {
     let fields = this.formBuilder.array([]);
     row.fields.forEach(field => {
       fields.push(this.formBuilder.group({
@@ -133,72 +210,6 @@ export class FormComponent implements OnInit {
 
   getFormFields(row) {
     let fields = (row.get("fields") as FormArray).controls;
-    return fields;
-  }
-
-
-  createFormEdit(data): FormGroup {
-    return this.formBuilder.group({
-      _id: data._id,
-      name: data.name,
-      template: this.templateFormEdit(data),
-      datasource: this.datasourceFormEdit(data),
-      rows: this.formBuilder.array(this.createRowsEdit(data)),
-      encrypt: data.encrypt,
-      upload: data.upload,
-      limitamount: data.limitamount,
-      encryptcmd: data.encryptcmd,
-      uploadcmd: data.uploadcmd,
-      maxamount: data.maxamount
-    })
-  }
-
-  templateFormEdit(data) {
-    return this.formBuilder.group({
-      _id: "",
-      name: data.name,
-      separatetype: data.separatetype,
-      separatechar: data.separatechar
-    })
-  }
-
-  datasourceFormEdit(data) {
-    return this.formBuilder.group({
-      driver: "",
-      host: "",
-      database: "",
-      username: "",
-      password: ""
-    })
-  }
-
-  createRowsEdit(data): any[] {
-    let rows = [];
-    data.rows.forEach(row => {
-      rows.push(this.formBuilder.group({
-        name: row.rowname,
-        rowtype: row.rowtype,
-        required: row.required,
-        groupby: "",
-        fields: this.createFieldsEdit(row)
-      }))
-    })
-    return rows;
-  }
-  createFieldsEdit(row) {
-    let fields = this.formBuilder.array([]);
-    row.fields.forEach(field => {
-      fields.push(this.formBuilder.group({
-        name: field.fieldname,
-        fieldtype: field.fieldtype,
-        length: field.fieldlength,
-        datafieldname: "",
-        required: field.required,
-        sum: "",
-        count: "",
-        formula: ""
-      }))
-    })
     return fields;
   }
 

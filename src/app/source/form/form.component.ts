@@ -15,6 +15,7 @@ export class FormComponent implements OnInit {
   sourceForm: FormGroup;
   rows: FormArray;
   fields: FormArray;
+  sourceData: any;
 
   // sourcetype: any[] = [
   //   { name: 'Databace', value: 'db' },
@@ -48,11 +49,13 @@ export class FormComponent implements OnInit {
 
     if (this.route.snapshot.params.id === 'new') {
       let id = this.route.snapshot.params.dataId;
-      this.bankService.getDataById(id).then((res: any) => {
-        this.sourceForm = this.createForm(res);
+      this.bankService.getDataById(id).then(async (res: any) => {
+        this.sourceData = res.rows;
+        this.sourceForm = await this.createForm(res);
       })
     } else {
       let data = this.route.snapshot.data.item;
+      this.sourceData = data.rows;
       this.sourceForm = this.createFormEdit(data);
     }
     // ของเก่า
@@ -91,11 +94,11 @@ export class FormComponent implements OnInit {
 
   datasourceForm(data) {
     return this.formBuilder.group({
-      driver: "",
-      host: "",
-      database: "",
-      username: "",
-      password: ""
+      driver: null,
+      host: null,
+      database: null,
+      username: null,
+      password: null
     })
   }
 
@@ -106,7 +109,7 @@ export class FormComponent implements OnInit {
         name: row.rowname,
         rowtype: row.rowtype,
         required: row.required,
-        groupby: "",
+        groupby: null,
         fields: this.createFields(row)
       }))
     })
@@ -120,11 +123,11 @@ export class FormComponent implements OnInit {
         name: field.fieldname,
         fieldtype: field.fieldtype,
         length: field.fieldlength,
-        datafieldname: "",
+        datafieldname: null,
         required: field.required,
-        sum: "",
-        count: "",
-        formula: ""
+        sum: null,
+        count: null,
+        formula: null
       }))
     })
     return fields;

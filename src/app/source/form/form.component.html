@@ -5,396 +5,280 @@
       <mat-icon>save</mat-icon>
     </button>
   </mat-card-header>
-  <form [formGroup]="sourceForm">
-
-    <div fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100">
-      <div fxFlex="100" fxFlex.gt-xs="60">
-        <div fxLayout="row wrap">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Report-Header</h3>
-            <div fxLayout="row wrap">
-              {{sourceForm.value.name}}
+  <mat-card-content class="scroll-bar">
+    <form [formGroup]="sourceForm">
+      <div fxLayout="column" fxLayout.gt-xs="row wrap" fxFlex="100">
+        <div fxFlex="100" fxFlex.gt-xs="60">
+          <div fxLayout="row wrap">
+            <div fxLayout="column wrap" fxFlex>
+              <h3>Report</h3>
+              <div fxLayout="row wrap" *ngFor="let rows of sourceData">
+                <div *ngFor="let item of rows.fields">
+                  <span *ngIf="item.name">
+                    <p>&nbsp;{{item.name}}</p>
+                  </span>
+                  <span *ngIf="item.fieldname">
+                    <p>&nbsp;{{item.fieldname}}</p>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div fxLayout="row wrap">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Report-Group</h3>
-            <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-xs="40">
+          <div fxLayout="row wrap">
+            <div fxLayout="column wrap" fxFlex>
+              <h3>Report</h3>
+              <div fxLayout="row wrap">
+                <table fxFlex>
+                  <tr>
+                    <th>key</th>
+                    <th>value</th>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Name</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" name="name">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Template</h4>
+                    </td>
+                    <td formGroupName="template">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Template</mat-label>
+                        <input matInput placeholder="Template" formControlName="name" name="name">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Data Source</h4>
+                    </td>
+                    <td formGroupName="datasource">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Data Source</mat-label>
+                        <input matInput placeholder="Data Source" formControlName="driver" name="driver">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Host</h4>
+                    </td>
+                    <td formGroupName="datasource">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Host</mat-label>
+                        <input matInput placeholder="Host" formControlName="host" name="host">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Database</h4>
+                    </td>
+                    <td formGroupName="datasource">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Database</mat-label>
+                        <input matInput placeholder="Database" formControlName="database" name="database">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>User Name</h4>
+                    </td>
+                    <td formGroupName="datasource">
+                      <mat-form-field appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input matInput placeholder="User Name" formControlName="username" name="username">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Password</h4>
+                    </td>
+                    <td formGroupName="datasource">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Password" formControlName="password" name="password">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div fxLayout="row wrap">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Report-Detail</h3>
-            <div fxLayout="row wrap">
+          <div fxLayout="row wrap" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
+            <div fxLayout="column wrap" fxFlex>
+              <h3>Rows</h3>
+              <div fxLayout="row wrap" [formGroupName]="idx">
+                <table fxFlex>
+                  <tr>
+                    <th>key</th>
+                    <th>value</th>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Name</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" name="name">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Row Type</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Row Type</mat-label>
+                        <input matInput placeholder="Row Type" formControlName="rowtype" name="rowtype">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Require</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Require</mat-label>
+                        <input matInput placeholder="Require" formControlName="required" name="required">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Group By</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Group By</mat-label>
+                        <input matInput placeholder="Group By" formControlName="groupby" name="groupby">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div fxLayout="column wrap" [formGroupName]="idx" fxFlex>
+              <h3>Field</h3>
+              <div fxLayout="row wrap" formArrayName="fields"
+                *ngFor="let field of getFormFields(row); let idy = index;">
+                <table fxFlex [formGroupName]="idy">
+                  <tr>
+                    <th>key</th>
+                    <th>value</th>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Name</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Name" formControlName="name" name="name">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Field Type</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Field Type</mat-label>
+                        <input matInput placeholder="Field Type" formControlName="fieldtype" name="fieldtype">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Require</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Require</mat-label>
+                        <input matInput placeholder="Require" formControlName="required" name="required">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Length</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Length</mat-label>
+                        <input matInput placeholder="Length" formControlName="length" name="length">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Data Field name</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Data Field name</mat-label>
+                        <input matInput placeholder="Data Field name" formControlName="datafieldname"
+                          name="datafieldname">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Sum</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Sum</mat-label>
+                        <input matInput placeholder="Sum" formControlName="sum" name="sum">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Count</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Count</mat-label>
+                        <input matInput placeholder="Count" formControlName="count" name="count">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td fxLayoutAlign="center">
+                      <h4>Formula</h4>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Formula</mat-label>
+                        <input matInput placeholder="Formula" formControlName="formula" name="formula">
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
+
         </div>
+        <!-- {{sourceForm.value|json}} -->
       </div>
-      <div fxFlex="100" fxFlex.gt-xs="40">
-        <div fxLayout="row wrap">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Report</h3>
-            <div fxLayout="row wrap">
-              <table fxFlex>
-                <tr>
-                  <th>key</th>
-                  <th>value</th>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Name</mat-label>
-                      <input matInput placeholder="Name" formControlName="name" name="name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Template</h4>
-                  </td>
-                  <td formGroupName="template">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Template</mat-label>
-                      <input matInput placeholder="Template" formControlName="name" name="name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Data Source</h4>
-                  </td>
-                  <td formGroupName="datasource">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Data Source</mat-label>
-                      <input matInput placeholder="Data Source" formControlName="driver" name="driver">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Host</h4>
-                  </td>
-                  <td formGroupName="datasource">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Host</mat-label>
-                      <input matInput placeholder="Host" formControlName="host" name="host">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Database</h4>
-                  </td>
-                  <td formGroupName="datasource">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Database</mat-label>
-                      <input matInput placeholder="Database" formControlName="database" name="database">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>User Name</h4>
-                  </td>
-                  <td formGroupName="datasource">
-                    <mat-form-field appearance="outline">
-                      <mat-label>User Name</mat-label>
-                      <input matInput placeholder="User Name" formControlName="username" name="username">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Password</h4>
-                  </td>
-                  <td formGroupName="datasource">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Password</mat-label>
-                      <input matInput placeholder="Password" formControlName="password" name="password">
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div fxLayout="row wrap" formArrayName="rows" *ngFor="let row of getFormRows(); let idx = index;">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Rows</h3>
-            <div fxLayout="row wrap" [formGroupName]="idx">
-              <table fxFlex>
-                <tr>
-                  <th>key</th>
-                  <th>value</th>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Name</mat-label>
-                      <input matInput placeholder="Name" formControlName="name" name="name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Row Type</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Row Type</mat-label>
-                      <input matInput placeholder="Row Type" formControlName="rowtype" name="rowtype">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Require</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Require</mat-label>
-                      <input matInput placeholder="Require" formControlName="required" name="required">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Group By</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Group By</mat-label>
-                      <input matInput placeholder="Group By" formControlName="groupby" name="groupby">
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div fxLayout="column wrap" [formGroupName]="idx" fxFlex>
-            <h3>Field</h3>
-            <div fxLayout="row wrap" formArrayName="fields" *ngFor="let field of getFormFields(row); let idy = index;">
-              <table fxFlex [formGroupName]="idy">
-                <tr>
-                  <th>key</th>
-                  <th>value</th>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Name</mat-label>
-                      <input matInput placeholder="Name" formControlName="name" name="name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Field Type</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Field Type</mat-label>
-                      <input matInput placeholder="Field Type" formControlName="fieldtype" name="fieldtype">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Require</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Require</mat-label>
-                      <input matInput placeholder="Require" formControlName="required" name="required">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Length</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Length</mat-label>
-                      <input matInput placeholder="Length" formControlName="length" name="length">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Data Field name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Data Field name</mat-label>
-                      <input matInput placeholder="Data Field name" formControlName="datafieldname"
-                        name="datafieldname">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Sum</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Sum</mat-label>
-                      <input matInput placeholder="Sum" formControlName="sum" name="sum">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Count</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Count</mat-label>
-                      <input matInput placeholder="Count" formControlName="count" name="count">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Formula</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Formula</mat-label>
-                      <input matInput placeholder="Formula" formControlName="formula" name="formula">
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- <div fxLayout="row wrap">
-          <div fxLayout="column wrap" fxFlex>
-            <h3>Field</h3>
-            <div fxLayout="row wrap">
-              <table fxFlex>
-                <tr>
-                  <th>key</th>
-                  <th>value</th>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Name</mat-label>
-                      <input matInput placeholder="Name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Field Type</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Field Type</mat-label>
-                      <input matInput placeholder="Field Type">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Require</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Require</mat-label>
-                      <input matInput placeholder="Require">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Length</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Length</mat-label>
-                      <input matInput placeholder="Length">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Data Field name</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Data Field name</mat-label>
-                      <input matInput placeholder="Data Field name">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Sum</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Sum</mat-label>
-                      <input matInput placeholder="Sum">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Count</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Count</mat-label>
-                      <input matInput placeholder="Count">
-                    </mat-form-field>
-                  </td>
-                </tr>
-                <tr>
-                  <td fxLayoutAlign="center">
-                    <h4>Formula</h4>
-                  </td>
-                  <td>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Formula</mat-label>
-                      <input matInput placeholder="Formula">
-                    </mat-form-field>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      {{sourceForm.value|json}}
-    </div>
-  </form>
-  <mat-card-content>
-    <!-- <mat-tab-group class="scroll-bar">
-      <mat-tab label="โครงสร้าง">
-        <form [formGroup]="sourceForm">
-        </form>
-      </mat-tab>
-    </mat-tab-group> -->
+    </form>
   </mat-card-content>
 </mat-card>

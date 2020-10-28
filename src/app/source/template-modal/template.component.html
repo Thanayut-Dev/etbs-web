@@ -3,7 +3,7 @@
     <h3>Bank Template</h3>
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="100">
-    <div mat-card-avatar *ngFor="let item of data" style="background-image: url('{{item.image}}');" (click)="selectTemplate(item)">
+    <div mat-card-avatar *ngFor="let item of data" style="background-image: url('{{item.image}}');" (click)="selectTemplate(item._id)">
     </div>
   </div>
 </div>

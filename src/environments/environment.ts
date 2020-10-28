@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   appName: 'etbs',
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://localhost:3000',
+  apiUrltest: 'http://localhost:3001'
 };
 
 /*

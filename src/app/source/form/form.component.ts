@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SourceService } from '../source.service';
 import { Location } from '@angular/common';
+import { BankService } from '../../bank/bank.service';
 
 @Component({
   selector: 'app-form',
@@ -12,6 +13,7 @@ import { Location } from '@angular/common';
 export class FormComponent implements OnInit {
 
   sourceForm: FormGroup;
+  rows: FormArray;
   fields: FormArray;
 
   sourcetype: any[] = [
@@ -39,78 +41,165 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private sourceService: SourceService,
     private location: Location,
-    ) { }
+    private bankService: BankService
+  ) { }
 
   ngOnInit(): void {
-    // console.log(this.route.snapshot.params);
-    let data = this.route.snapshot.data.item;
-    this.sourceForm = this.createForm(data);
+
+    if (this.route.snapshot.params.id === 'new') {
+      let id = this.route.snapshot.params.dataId;
+      this.bankService.getDataById(id).then((res: any) => {
+        this.sourceForm = this.createFormEdit(res);
+      })
+    } else {
+      let data = this.route.snapshot.data.item;
+      this.sourceForm = this.createForm(data);
+    }
+    // ของเก่า
+    // let data = this.route.snapshot.data.item;
+    // this.sourceForm = this.createForm(data);
   }
 
-  createForm(data) {
+  createForm(data): FormGroup {
     return this.formBuilder.group({
       _id: data._id,
       name: data.name,
-      sourcetype: data.sourcetype,
-      sourcedb: this.sourcedbForm(data),
-      sourcefile: this.sourcefileForm(data),
-      query: data.query,
-      fields: this.formBuilder.array(this.fieldFormArray(data))
+      template: this.templateForm(data),
+      datasource: this.datasourceForm(data),
+      rows: this.formBuilder.array(this.createRows(data)),
+      encrypt: data.encrypt,
+      upload: data.upload,
+      limitamount: data.limitamount,
+      encryptcmd: data.encryptcmd,
+      uploadcmd: data.uploadcmd,
+      maxamount: data.maxamount
     })
   }
 
-  sourcedbForm(data) {
+  templateForm(data) {
     return this.formBuilder.group({
-      dbtype: data.sourcedb.dbtype,
-      host: data.sourcedb.host,
-      username: data.sourcedb.username,
-      password: data.sourcedb.password,
+      _id: data.template._id,
+      name: data.template.name,
+      separatetype: data.template.separatetype,
+      separatechar: data.template.separatechar
     })
   }
 
-  sourcefileForm(data) {
+  datasourceForm(data) {
     return this.formBuilder.group({
-      filetype: data.sourcefile.filetype,
-      filepath: data.sourcefile.filepath
+      driver: data.datasource.driver,
+      host: data.datasource.host,
+      database: data.datasource.database,
+      username: data.datasource.username,
+      password: data.datasource.password
     })
   }
 
-  fieldFormArray(data): any[] {
-    let fields = [];
-    data.fields.forEach(field => {
-      fields.push(
-        this.formBuilder.group({
-          fieldname: field.fieldname,
-          fieldtype: field.fieldtype,
-          fieldlength: field.fieldlength,
-          defaultvalue: field.defaultvalue,
-          example: field.example
-        })
-      )
+  createRows(data): any[] {
+    let rows = [];
+    data.rows.forEach(row => {
+      rows.push(this.formBuilder.group({
+        name: row.name,
+        rowtype: row.rowtype,
+        required: row.required,
+        groupby: row.groupby,
+        fields: this.createFields(row)
+      }))
+    })
+    return rows;
+  }
+  createFields(row) {
+    let fields = this.formBuilder.array([]);
+    row.fields.forEach(field => {
+      fields.push(this.formBuilder.group({
+        name: field.name,
+        fieldtype: field.fieldtype,
+        length: field.length,
+        datafieldname: field.datafieldname,
+        required: field.required,
+        sum: field.sum,
+        count: field.count,
+        formula: field.formula
+      }))
     })
     return fields;
   }
 
-  fieldFormControl() {
-    let fields = (this.sourceForm.get("fields") as FormArray).controls;
+
+  getFormRows() {
+    let rows = (this.sourceForm.get("rows") as FormArray).controls;
+    return rows;
+  }
+
+  getFormFields(row) {
+    let fields = (row.get("fields") as FormArray).controls;
     return fields;
   }
 
-  addFieldItem(): void {
-    this.fields = this.sourceForm.get('fields') as FormArray;
-    this.fields.push(
-      this.formBuilder.group({
-        fieldname: "",
-        fieldtype: "string",
-        fieldlength: 0,
-        defaultvalue: "",
-        example: ""
-      })
-    );
+
+  createFormEdit(data): FormGroup {
+    return this.formBuilder.group({
+      _id: data._id,
+      name: data.name,
+      template: this.templateFormEdit(data),
+      datasource: this.datasourceFormEdit(data),
+      rows: this.formBuilder.array(this.createRowsEdit(data)),
+      encrypt: data.encrypt,
+      upload: data.upload,
+      limitamount: data.limitamount,
+      encryptcmd: data.encryptcmd,
+      uploadcmd: data.uploadcmd,
+      maxamount: data.maxamount
+    })
   }
 
-  deleteField(idy) {
-    this.fields.removeAt(idy)
+  templateFormEdit(data) {
+    return this.formBuilder.group({
+      _id: "",
+      name: data.name,
+      separatetype: data.separatetype,
+      separatechar: data.separatechar
+    })
+  }
+
+  datasourceFormEdit(data) {
+    return this.formBuilder.group({
+      driver: "",
+      host: "",
+      database: "",
+      username: "",
+      password: ""
+    })
+  }
+
+  createRowsEdit(data): any[] {
+    let rows = [];
+    data.rows.forEach(row => {
+      rows.push(this.formBuilder.group({
+        name: row.rowname,
+        rowtype: row.rowtype,
+        required: row.required,
+        groupby: "",
+        fields: this.createFieldsEdit(row)
+      }))
+    })
+    return rows;
+  }
+  createFieldsEdit(row) {
+    let fields = this.formBuilder.array([]);
+    row.fields.forEach(field => {
+      fields.push(this.formBuilder.group({
+        name: field.fieldname,
+        fieldtype: field.fieldtype,
+        length: field.fieldlength,
+        datafieldname: "",
+        required: field.required,
+        sum: "",
+        count: "",
+        formula: ""
+      }))
+    })
+    return fields;
   }
 
   async onSaveData() {

@@ -4,7 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 
-const api_url = environment.apiUrl + "/";
+// const api_url = '../../assets/template.json';
+const api_url = environment.apiUrltest + "/";
+// const api_url = environment.apiUrl + "/";
 const api_urlExample = environment.apiUrl + '/api/banks/example/txtfile/';
 
 @Injectable({
@@ -41,7 +43,7 @@ export class BankService implements Resolve<any> {
     let body;
     return body = {
       name: "",
-      image: "",
+      image: "https://www.crispyhealthy.com/image/catalog/demo/Krungsri.png",
       separatetype: true,
       separatechar: "",
       rows: [

@@ -6,8 +6,7 @@
     </button>
   </mat-card-header>
   <form [formGroup]="bankForm" fxLayout="row wrap" fxLayoutAlign="space-around stretch">
-    <div mat-card-avatar (click)="fileInput.click()" class="avatar-card"
-      style="background-image: url('{{image}}');">
+    <div mat-card-avatar (click)="fileInput.click()" class="avatar-card" style="background-image: url('{{image}}');">
     </div>
     <input #fileInput type="file" (change)="onFileChanged($event)" style="display: none;">
     <div fxLayout="column" fxFlex="70">
@@ -16,8 +15,8 @@
         <input matInput placeholder="Bankname" formControlName="name">
       </mat-form-field>
       <mat-radio-group formControlName="separatetype">
-        <mat-radio-button fxFlex [value]="false">Fix Length</mat-radio-button>
-        <mat-radio-button fxFlex [value]="true">Separate Char</mat-radio-button>
+        <mat-radio-button fxFlex [value]="true">Fix Length</mat-radio-button>
+        <mat-radio-button fxFlex [value]="false">Separate Char</mat-radio-button>
       </mat-radio-group>
       <ng-template [ngIf]="!bankForm.value.separatetype">
         <mat-form-field appearance="outline" class="mat-form-top">

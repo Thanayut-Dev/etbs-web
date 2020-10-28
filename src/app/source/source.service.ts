@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
 
-const api_url = environment.apiUrl + '/api/sources/';
+const api_url = environment.apiUrl + '/';
 
 @Injectable({
   providedIn: 'root'
@@ -41,28 +41,48 @@ export class SourceService implements Resolve<any> {
     let body;
     return body = {
       name: "",
-      sourcetype: "db",
-      sourcedb: {
-        dbtype: "",
+      template: {
+        _id: "",
+        name: "",
+        separatetype: false,
+        separatechar: ""
+      },
+      datasource: {
+        driver: "",
         host: "",
+        database: "",
         username: "",
-        password: "",
+        password: ""
       },
-      sourcefile: {
-        filetype: "",
-        filepath: ""
-      },
-      query: "",
-      fields: [
+      rows: [
         {
-          fieldname: "",
-          fieldtype: "string",
-          fieldlength: 50,
-          defaultvalue: "",
-          seq: 1,
-          example: ""
+          name: "",
+          rowtype: "",
+          required: true,
+          groupby: [
+            ""
+          ],
+          fields: [
+            {
+              name: "",
+              fieldtype: "",
+              length: 1,
+              datafieldname: "",
+              required: true,
+              sum: "",
+              count: "",
+              formula: "",
+              seq: 1
+            }
+          ]
         }
-      ]
+      ],
+      encrypt: false,
+      upload: false,
+      limitamount: false,
+      encryptcmd: "",
+      uploadcmd: "",
+      maxamount: 200
     }
   }
 

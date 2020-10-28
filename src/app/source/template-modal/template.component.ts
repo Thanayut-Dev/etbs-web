@@ -12,7 +12,7 @@ export class TemplateComponent implements OnInit {
 
   // @Input() data: any;
 
-  image: String = "https://play-lh.googleusercontent.com/ovSLL4E--Mo_nJg4XHE8k_9KYCpAbn6FB0FLMgzl6lyNubIJoJxdvWyEnM7sN02DD5I";
+  // image: String = "https://play-lh.googleusercontent.com/ovSLL4E--Mo_nJg4XHE8k_9KYCpAbn6FB0FLMgzl6lyNubIJoJxdvWyEnM7sN02DD5I";
 
   constructor(
     private router: Router,
@@ -22,13 +22,12 @@ export class TemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("template");
-    console.log(this.data);
+
   }
 
   selectTemplate(item) {
-    this.router.navigate(['dataset/form/new', { data: item }]);
-    console.log(item);
+    this.router.navigate(['dataset/form/new', { dataId: item }]);
+    // console.log(item);
     // this.router.navigateByUrl('dataset/form/new');
     this.dialogRef.close();
   }

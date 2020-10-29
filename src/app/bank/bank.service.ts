@@ -9,10 +9,13 @@ const api_url = environment.apiUrltest + "/";
 // api_url_upload test upload การรับส่งข้อมูล
 const api_url_upload = environment.apiUrlUpload + "/";
 
+// api_url_upload test upload การรับส่งข้อมูล
+const api_url_gentxt = environment.apiUrlGenTxt + "/txtfile";
+
 
 // api_url ใช้งานจริง
 // const api_url = environment.apiUrl + "/";
-const api_urlExample = environment.apiUrl + '/api/banks/example/txtfile/';
+// const api_urlExample = environment.apiUrl + '/';
 
 @Injectable({
   providedIn: 'root'
@@ -121,7 +124,7 @@ export class BankService implements Resolve<any> {
 
   exampleFile(body): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(api_urlExample, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+      this.http.post(api_url_gentxt, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
         resolve(res.data);
       })
     })

@@ -8,7 +8,8 @@ export const environment = {
   apiUrl: 'http://localhost:3000',
   // เพิ่ม localhost test การรับส่งข้อมูล
   apiUrltest: 'http://localhost:3001',
-  apiUrlUpload: 'http://localhost:3002'
+  apiUrlUpload: 'http://localhost:3002',
+  apiUrlGenTxt: 'http://localhost:3003'
 };
 
 /*

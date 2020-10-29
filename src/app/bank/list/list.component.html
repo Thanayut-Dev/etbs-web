@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 scroll-bar">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -11,7 +11,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let row">
         <div fxLayout="row wrap" class="avatar-name">
-          <div mat-card-avatar style="background-image: url('{{row.image}}');">
+          <div mat-card-avatar class="box-shadow-css" style="background-image: url('{{row.image}}');">
           </div>
           <span class="title-name">{{row.name}}</span>
         </div>

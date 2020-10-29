@@ -55,7 +55,7 @@ export class ListComponent implements AfterViewInit, OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(TemplateComponent, {
       width: '900px',
-      height: '500px',
+      height: '400px',
       data: this.templateData
     });
 

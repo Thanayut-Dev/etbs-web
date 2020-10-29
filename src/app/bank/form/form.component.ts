@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  image: String = "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg";
+
   bankForm: FormGroup;
   rows: FormArray;
   fields: FormArray;
@@ -167,16 +167,11 @@ export class FormComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    const file = event.target.files[0]
-    this.bankForm.patchValue({
-      image: file
+    const file = event.target.files[0];
+    this.bankService.uploadLogo(file).then((res:any) => {
+      this.bankForm.patchValue({
+        image: res.data.url
+      })
     })
-    this.bankForm.get("image").updateValueAndValidity();
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.image = reader.result as string;
-    }
-    reader.readAsDataURL(file);
   }
 }

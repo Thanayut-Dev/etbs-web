@@ -48,7 +48,7 @@ export class BankService implements Resolve<any> {
     let body;
     return body = {
       name: "",
-      image: "https://www.crispyhealthy.com/image/catalog/demo/Krungsri.png",
+      image: "https://pngimage.net/wp-content/uploads/2018/05/add-image-png-4.png",
       separatetype: true,
       separatechar: "",
       rows: [
@@ -127,10 +127,12 @@ export class BankService implements Resolve<any> {
     })
   }
 
-  uploadFileImage(body): Promise<any> {
+  uploadLogo(file: File): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(api_url_upload, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
-        resolve(res.data);
+      const formData = new FormData();
+      formData.append('file', file);
+      this.http.post(api_url_upload, formData).subscribe((res: any) => {
+        resolve(res);
       })
     })
   }

@@ -6,7 +6,9 @@ export const environment = {
   production: false,
   appName: 'etbs',
   apiUrl: 'http://localhost:3000',
-  apiUrltest: 'http://localhost:3001'
+  // เพิ่ม localhost test การรับส่งข้อมูล
+  apiUrltest: 'http://localhost:3001',
+  apiUrlUpload: 'http://localhost:3002'
 };
 
 /*

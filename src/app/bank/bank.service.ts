@@ -3,9 +3,14 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-
-// const api_url = '../../assets/template.json';
+// api_url test การรับส่งข้อมูล
 const api_url = environment.apiUrltest + "/";
+
+// api_url_upload test upload การรับส่งข้อมูล
+const api_url_upload = environment.apiUrlUpload + "/";
+
+
+// api_url ใช้งานจริง
 // const api_url = environment.apiUrl + "/";
 const api_urlExample = environment.apiUrl + '/api/banks/example/txtfile/';
 
@@ -117,6 +122,14 @@ export class BankService implements Resolve<any> {
   exampleFile(body): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(api_urlExample, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      })
+    })
+  }
+
+  uploadFileImage(body): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.post(api_url_upload, body, { headers: this.authorizationHeader() }).subscribe((res: any) => {
         resolve(res.data);
       })
     })

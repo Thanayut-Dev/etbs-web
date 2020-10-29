@@ -36,10 +36,12 @@ export class FormComponent implements OnInit {
     private bankService: BankService,
     private location: Location,
     ) { }
+
   ngOnInit(): void {
     let data = this.route.snapshot.data.item;
     this.bankForm = this.createForm(data)
   }
+
   createForm(data): FormGroup {
     return this.formBuilder.group({
       _id: data._id,
@@ -56,6 +58,7 @@ export class FormComponent implements OnInit {
       maxamount: data.maxamount
     })
   }
+
   createRows(data): any[] {
     let rows = [];
     data.rows.forEach(row => {
@@ -68,6 +71,7 @@ export class FormComponent implements OnInit {
     })
     return rows;
   }
+
   createFields(row) {
     let fields = this.formBuilder.array([]);
     row.fields.forEach(field => {
@@ -112,6 +116,7 @@ export class FormComponent implements OnInit {
       })
     )
   }
+
   addNewField(row) {
     this.fields = row.get("fields") as FormArray;
     this.fields.push(
@@ -128,6 +133,7 @@ export class FormComponent implements OnInit {
   deleteRow(idx) {
     this.rows.removeAt(idx)
   }
+
   deleteField(row, idy) {
     let fields = row.get("fields") as FormArray;
     fields.removeAt(idy);

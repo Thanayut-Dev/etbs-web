@@ -35,6 +35,7 @@ export class SourceService implements Resolve<any> {
     }
   }
 
+  // get id in template
   getDataTemplateById(id) {
     return new Promise((resolve, reject) => {
       this.http.get(api_url_template + id, { headers: this.authorizationHeader() }).subscribe((res: any) => {

@@ -5,6 +5,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 
 
 const api_url = environment.apiUrl + '/';
+const api_url_template = environment.apiUrltest + "/";
 
 @Injectable({
   providedIn: 'root'
@@ -23,68 +24,77 @@ export class SourceService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.routeParam = route.params;
-    if (this.routeParam.id) {
+
+    if (this.routeParam.id || this.routeParam.dataId) {
       if (this.routeParam.id !== 'new') {
         return this.getDataById(this.routeParam.id);
       }
-      return this.initiaiData();
+      return this.getDataTemplateById(this.routeParam.dataId);
     } else {
       return this.getDataList();
     }
-
   }
+
+  getDataTemplateById(id) {
+    return new Promise((resolve, reject) => {
+      this.http.get(api_url_template + id, { headers: this.authorizationHeader() }).subscribe((res: any) => {
+        resolve(res.data);
+      })
+    })
+  }
+
   getDataList() {
     return this.http.get(api_url, { headers: this.authorizationHeader() })
   }
 
-  initiaiData() {
-    let body;
-    return body = {
-      name: "",
-      template: {
-        _id: "",
-        name: "",
-        separatetype: false,
-        separatechar: ""
-      },
-      datasource: {
-        driver: "",
-        host: "",
-        database: "",
-        username: "",
-        password: ""
-      },
-      rows: [
-        {
-          name: "",
-          rowtype: "",
-          required: true,
-          groupby: [
-            ""
-          ],
-          fields: [
-            {
-              name: "",
-              fieldtype: "",
-              length: 1,
-              datafieldname: "",
-              required: true,
-              sum: "",
-              count: "",
-              formula: "",
-              seq: 1
-            }
-          ]
-        }
-      ],
-      encrypt: false,
-      upload: false,
-      limitamount: false,
-      encryptcmd: "",
-      uploadcmd: "",
-      maxamount: 200
-    }
-  }
+  // initiaiData() {
+  //   let body;
+  //   return body = {
+  //     name: "",
+  //     template: {
+  //       _id: "",
+  //       name: "",
+  //       separatetype: false,
+  //       separatechar: ""
+  //     },
+  //     datasource: {
+  //       driver: "",
+  //       host: "",
+  //       database: "",
+  //       username: "",
+  //       password: ""
+  //     },
+  //     rows: [
+  //       {
+  //         name: "",
+  //         rowtype: "",
+  //         required: true,
+  //         groupby: [
+  //           ""
+  //         ],
+  //         fields: [
+  //           {
+  //             name: "",
+  //             fieldtype: "",
+  //             length: 1,
+  //             datafieldname: "",
+  //             required: true,
+  //             sum: "",
+  //             count: "",
+  //             formula: "",
+  //             seq: 1
+  //           }
+  //         ]
+  //       }
+  //     ],
+  //     encrypt: false,
+  //     upload: false,
+  //     limitamount: false,
+  //     encryptcmd: "",
+  //     uploadcmd: "",
+  //     maxamount: 200
+  //   }
+  // }
 
   getDataById(id): Promise<any> {
     return new Promise((resolve, reject) => {

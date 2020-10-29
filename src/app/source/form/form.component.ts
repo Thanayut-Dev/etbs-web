@@ -48,19 +48,14 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.route.snapshot.params.id === 'new') {
-      let id = this.route.snapshot.params.dataId;
-      this.bankService.getDataById(id).then(async (res: any) => {
-        this.sourceData = res.rows;
-        this.sourceForm = await this.createForm(res);
-      })
+      let templateData = this.route.snapshot.data.item;
+      this.sourceData = templateData.rows;
+      this.sourceForm = this.createForm(templateData);
     } else {
       let data = this.route.snapshot.data.item;
       this.sourceData = data.rows;
       this.sourceForm = this.createFormEdit(data);
     }
-    // ของเก่า
-    // let data = this.route.snapshot.data.item;
-    // this.sourceForm = this.createForm(data);
   }
 
 

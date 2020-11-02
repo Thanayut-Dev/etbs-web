@@ -1,0 +1,1396 @@
+{
+  "createby": {
+      "_id": "5d5d2fec11e3430012a1750c",
+      "username": "ty@gmail.com",
+      "displayname": "ty -"
+  },
+  "updateby": {
+      "_id": "5d5d2fec11e3430012a1750c",
+      "username": "ty@gmail.com",
+      "displayname": "ty -"
+  },
+  "_id": "5f9929e4af2ceb02b38903d6",
+  "name": "BAY Test",
+  "template": {
+      "_id": null,
+      "name": "BAY",
+      "separatetype": true,
+      "separatechar": ""
+  },
+  "datasource": "U2FsdGVkX18H0zpCv6rMpiPmgCu3HCCUlWCGKr2Z10YMu13aVKVIV9oTglEZIygesKN/cJmVOwXccYZjD/lbsHo3uwNrbdLwnRa0vmLjIhPmINyrzj059lFdyS4mInu4HUk9WzQLpIg3IcJeXWfZfA==",
+  "rows": [
+      {
+          "groupby": [
+              "product"
+          ],
+          "_id": "5f99305daf2ceb02b38903d7",
+          "name": "File Controller",
+          "rowtype": "header",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b38903d8",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "rec_type",
+                  "required": true,
+                  "sum": "none",
+                  "count": "none",
+                  "formula": "none"
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903d9",
+                  "name": "format version",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "rec_type",
+                  "required": false,
+                  "sum": "none",
+                  "count": "none",
+                  "formula": "none"
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903da",
+                  "name": "input / output flag",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "rec_type",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903db",
+                  "name": "hash",
+                  "fieldtype": "char",
+                  "length": 100,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      },
+      {
+          "groupby": [
+              ""
+          ],
+          "_id": "5f99305daf2ceb02b38903dc",
+          "name": "Batch Controller",
+          "rowtype": "product",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b38903dd",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903de",
+                  "name": "Batch ref",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903df",
+                  "name": "Batch ref from GCP (Uniq)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e0",
+                  "name": "Payment debit acct / collection credit acct",
+                  "fieldtype": "char",
+                  "length": 16,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e1",
+                  "name": "Account Currency",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e2",
+                  "name": "my product",
+                  "fieldtype": "char",
+                  "length": 10,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e3",
+                  "name": "transaction date",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e4",
+                  "name": "Check dup acct",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e5",
+                  "name": "No. of transaction",
+                  "fieldtype": "number",
+                  "length": 6,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e6",
+                  "name": "Total Amount",
+                  "fieldtype": "number",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e7",
+                  "name": "No. of reject transactions",
+                  "fieldtype": "number",
+                  "length": 6,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903e8",
+                  "name": "Total reject amount",
+                  "fieldtype": "number",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      },
+      {
+          "groupby": [
+              ""
+          ],
+          "_id": "5f99305daf2ceb02b38903e9",
+          "name": "Transaction Detail",
+          "rowtype": "transection",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b38903ea",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903eb",
+                  "name": "Instruction Ref.",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903ec",
+                  "name": "Customer Ref.",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903ed",
+                  "name": "Reference 1",
+                  "fieldtype": "char",
+                  "length": 60,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903ee",
+                  "name": "Reference 2",
+                  "fieldtype": "char",
+                  "length": 60,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903ef",
+                  "name": "Reference 3",
+                  "fieldtype": "char",
+                  "length": 95,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f0",
+                  "name": "Transaction Detail",
+                  "fieldtype": "char",
+                  "length": 255,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f1",
+                  "name": "Transaction credit time",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f2",
+                  "name": "Service type",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f3",
+                  "name": "Payment Amount",
+                  "fieldtype": "number",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f4",
+                  "name": "Charges Borne By",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f5",
+                  "name": "Delivery Mode",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f6",
+                  "name": "Third Party Code",
+                  "fieldtype": "char",
+                  "length": 10,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f7",
+                  "name": "Filler",
+                  "fieldtype": "char",
+                  "length": 6,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f8",
+                  "name": "VendorID",
+                  "fieldtype": "char",
+                  "length": 16,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903f9",
+                  "name": "Third Party name",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903fa",
+                  "name": "Third Party Mailing Name",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903fb",
+                  "name": "Third Party Address",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903fc",
+                  "name": "Third Party Mailing Address",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903fd",
+                  "name": "Third Party fax no",
+                  "fieldtype": "char",
+                  "length": 25,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903fe",
+                  "name": "Third Party email address",
+                  "fieldtype": "char",
+                  "length": 150,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b38903ff",
+                  "name": "Third Party mobile no",
+                  "fieldtype": "char",
+                  "length": 25,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890400",
+                  "name": "Third Party bank",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890401",
+                  "name": "Third Party branch",
+                  "fieldtype": "char",
+                  "length": 4,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890402",
+                  "name": "Third Party Account",
+                  "fieldtype": "char",
+                  "length": 16,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890403",
+                  "name": "Third Party Account Currency",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890404",
+                  "name": "bic",
+                  "fieldtype": "char",
+                  "length": 11,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890405",
+                  "name": "iban",
+                  "fieldtype": "char",
+                  "length": 50,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890406",
+                  "name": "Pickup branch",
+                  "fieldtype": "char",
+                  "length": 0,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890407",
+                  "name": "Payment details / Document for verify cheque receiver",
+                  "fieldtype": "char",
+                  "length": 0,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890408",
+                  "name": "CorpCheque (Crossing Oder)",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890409",
+                  "name": "1TAXID",
+                  "fieldtype": "char",
+                  "length": 15,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040a",
+                  "name": "2CONTROLCO",
+                  "fieldtype": "char",
+                  "length": 15,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040b",
+                  "name": "3TAXTYPE",
+                  "fieldtype": "char",
+                  "length": 5,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040c",
+                  "name": "status Code:",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040d",
+                  "name": "Status Reason",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040e",
+                  "name": "cheque no",
+                  "fieldtype": "char",
+                  "length": 10,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389040f",
+                  "name": "cheque status",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890410",
+                  "name": "cheque status Update date",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890411",
+                  "name": "Delivery Status",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890412",
+                  "name": "Delivery Status Update date",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890413",
+                  "name": "Transaction ref form GCP (Uniq)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890414",
+                  "name": "Third Party Bank Country",
+                  "fieldtype": "char",
+                  "length": 2,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890415",
+                  "name": "Payment Purpose Code",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890416",
+                  "name": "Payment Purpose Description",
+                  "fieldtype": "char",
+                  "length": 140,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      },
+      {
+          "groupby": [
+              ""
+          ],
+          "_id": "5f99305daf2ceb02b3890417",
+          "name": "WHT",
+          "rowtype": "transection",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b3890418",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890419",
+                  "name": "Type of  Tax",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041a",
+                  "name": "WHT payment type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041b",
+                  "name": "WHT payment type 4 Description",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041c",
+                  "name": "Sequence flag",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041d",
+                  "name": "Customer Seq. Month (Left side)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041e",
+                  "name": "Customer Seq. Year (Top Right side)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389041f",
+                  "name": "Payer Name",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890420",
+                  "name": "Payer Address",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890421",
+                  "name": "Payer Tax ID",
+                  "fieldtype": "char",
+                  "length": 13,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890422",
+                  "name": "Payee Name",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890423",
+                  "name": "Payee Address",
+                  "fieldtype": "char",
+                  "length": 200,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890424",
+                  "name": "Income Type 1",
+                  "fieldtype": "char",
+                  "length": 13,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890425",
+                  "name": "Income Type 1",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890426",
+                  "name": "WHT Rate 1",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890427",
+                  "name": "WHT Description 1",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890428",
+                  "name": "Income Amount 1",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890429",
+                  "name": "WHT Amount 1",
+                  "fieldtype": "char",
+                  "length": 12,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042a",
+                  "name": "WHT Deducted Date 1",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042b",
+                  "name": "Income Type 2",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042c",
+                  "name": "WHT Rate 2",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042d",
+                  "name": "WHT Description 2",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042e",
+                  "name": "Income Amount 2",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389042f",
+                  "name": "WHT Amount 2",
+                  "fieldtype": "char",
+                  "length": 12,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890430",
+                  "name": "WHT Deducted Date 2",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890431",
+                  "name": "Income Type 3",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890432",
+                  "name": "WHT Rate 3",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890433",
+                  "name": "WHT Description 3",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890434",
+                  "name": "Income Amount3",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890435",
+                  "name": "WHT Amount 3",
+                  "fieldtype": "char",
+                  "length": 12,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890436",
+                  "name": "WHT Deducted Date 3",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890437",
+                  "name": "Income Type 4",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890438",
+                  "name": "WHT Rate 4",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890439",
+                  "name": "WHT Description 4",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043a",
+                  "name": "Income Amount 4",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043b",
+                  "name": "WHT Amount 4",
+                  "fieldtype": "char",
+                  "length": 12,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043c",
+                  "name": "WHT Deducted Date 4",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043d",
+                  "name": "Income Type 5",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043e",
+                  "name": "WHT Rate 5",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389043f",
+                  "name": "WHT Description 5",
+                  "fieldtype": "char",
+                  "length": 35,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890440",
+                  "name": "Income Amount 5",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890441",
+                  "name": "WHT Amount 5",
+                  "fieldtype": "char",
+                  "length": 12,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890442",
+                  "name": "WHT Deducted Date 5",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      },
+      {
+          "groupby": [
+              ""
+          ],
+          "_id": "5f99305daf2ceb02b3890443",
+          "name": "Invoice",
+          "rowtype": "transection",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b3890444",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": true,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890445",
+                  "name": "sequence for Invoice",
+                  "fieldtype": "char",
+                  "length": 3,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890446",
+                  "name": "Payment Document",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890447",
+                  "name": "Doc Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890448",
+                  "name": "PO Number",
+                  "fieldtype": "char",
+                  "length": 50,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890449",
+                  "name": "Doc Number",
+                  "fieldtype": "char",
+                  "length": 50,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044a",
+                  "name": "Invoice No",
+                  "fieldtype": "char",
+                  "length": 50,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044b",
+                  "name": "Invoice Date",
+                  "fieldtype": "char",
+                  "length": 8,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044c",
+                  "name": "Invoice Amount (+,-)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044d",
+                  "name": "Vat Amount (+,-)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044e",
+                  "name": "WHT Amount (+,-)",
+                  "fieldtype": "char",
+                  "length": 20,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b389044f",
+                  "name": "Invoice Description",
+                  "fieldtype": "char",
+                  "length": 255,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      },
+      {
+          "groupby": [
+              ""
+          ],
+          "_id": "5f99305daf2ceb02b3890450",
+          "name": "Invoice FreeText",
+          "rowtype": "transection",
+          "required": true,
+          "fields": [
+              {
+                  "_id": "5f99305daf2ceb02b3890451",
+                  "name": "Record Type",
+                  "fieldtype": "char",
+                  "length": 1,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              },
+              {
+                  "_id": "5f99305daf2ceb02b3890452",
+                  "name": "Free Text",
+                  "fieldtype": "char",
+                  "length": 100,
+                  "datafieldname": "",
+                  "required": false,
+                  "sum": "",
+                  "count": "",
+                  "formula": ""
+              }
+          ]
+      }
+  ],
+  "encrypt": null,
+  "upload": null,
+  "limitamount": null,
+  "encryptcmd": "test",
+  "uploadcmd": "test/test",
+  "maxamount": 5000000,
+  "created": "2020-10-28T08:20:52.351Z",
+  "__v": 1,
+  "updated": "2020-10-28T08:48:30.020Z"
+}

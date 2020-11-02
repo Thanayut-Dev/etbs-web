@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   rows: FormArray;
   fields: FormArray;
   sourceData: any;
+  panelOpenState = false;
 
   // sourcetype: any[] = [
   //   { name: 'Databace', value: 'db' },
